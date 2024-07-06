@@ -44,6 +44,5 @@ export const approveOrder = async (approveLink) => {
   } finally {
     // close the browser
     await driver.quit();
-    console.log("4. Order approved");
   }
 };
