@@ -1,5 +1,4 @@
 import axios from "axios";
-import logSymbols from "log-symbols";
 import {
   createProductReqBody,
   updateProductReqBody,
@@ -9,6 +8,7 @@ import {
   addTrackingInfoReqBody,
   updateTrackingInfoReqBody,
 } from "./requestBodies/UseCase1.js";
+import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
 import { approveOrder } from "./selenium/seleniumFunctions.js";
 
 function sleep(ms) {
@@ -21,7 +21,7 @@ function printInfo(res) {
       res.config.url
     } - STATUS CODE:`,
     res.status,
-    logSymbols.success
+    "\x1b[32m✔\x1b[0m"
   );
 }
 
@@ -29,25 +29,51 @@ function printErrorInfo(error) {
   console.log(
     `${requestCounter++}. ${error.request.method} ${error.config.url} :`,
     error.response.data.message,
-    logSymbols.error
+    "\x1b[31m✕\x1b[0m"
   );
 }
 
 const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com`;
-// handling tracking information requires the initial paypal auth token
-//(owned by a random merchant, not the one associated with the business sandbox account)
-const authHeader = `Bearer ${process.env.PAYPAL_INITIAL_AUTH_TOKEN}`;
-const headers = {
-  headers: {
-    Authorization: authHeader,
-  },
-};
 
 var requestCounter = 1;
 
 export const useCase1Requests = async () => {
   // Use Case 1 : Create Product - New Order - Payment - Tracking
   console.log("USE CASE 1 : Create Product - New Order - Payment - Tracking");
+
+  // generate PayPal access token
+  let access_token = "";
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/oauth2/token`,
+      generateAccessTokenReqBody(),
+      {
+        // authentication header to generate a PayPal access token
+        // handling tracking information requires the initial (default) client id / client secret
+        // (owned by a random merchant, not the one associated with the sandbox business account)
+        auth: {
+          username: process.env.PAYPAL_CLIENT_ID_INITIAL,
+          password: process.env.PAYPAL_CLIENT_SECRET_INITIAL,
+        },
+
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    printInfo(res);
+    access_token = res.data.access_token;
+  } catch (error) {
+    printErrorInfo(error);
+  }
+
+  const authHeader = `Bearer ${access_token}`;
+  const headers = {
+    headers: {
+      Authorization: authHeader,
+    },
+  };
+
   // Create Product
   let productID = "";
   try {
@@ -135,7 +161,7 @@ export const useCase1Requests = async () => {
   }
 
   await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, logSymbols.success);
+  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
 
   await sleep(1000);
 

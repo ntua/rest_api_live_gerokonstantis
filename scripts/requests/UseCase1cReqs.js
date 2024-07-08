@@ -1,6 +1,6 @@
 import axios from "axios";
-import logSymbols from "log-symbols";
 import { approveOrder } from "./selenium/seleniumFunctions.js";
+import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
 import {
   createProductReqBody,
   createOrderReqBody,
@@ -17,7 +17,7 @@ function printInfo(res) {
       res.config.url
     } - STATUS CODE:`,
     res.status,
-    logSymbols.success
+    "\x1b[32m✔\x1b[0m"
   );
 }
 
@@ -25,23 +25,50 @@ function printErrorInfo(error) {
   console.log(
     `${requestCounter++}. ${error.request.method} ${error.config.url} :`,
     error.response.data.message,
-    logSymbols.error
+    "\x1b[31m✕\x1b[0m"
   );
 }
 
 const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com`;
-const authHeader = `Bearer ${process.env.PAYPAL_AUTH_TOKEN}`;
-const headers = {
-  headers: {
-    Authorization: authHeader,
-  },
-};
 
 var requestCounter = 1;
 
 export const useCase1cRequests = async () => {
   // Use Case 1c : Make Order - Pay - Refund
   console.log("USE CASE 1c : Make Order - Pay - Refund");
+
+  // generate PayPal access token
+  let access_token = "";
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/oauth2/token`,
+      generateAccessTokenReqBody(),
+      {
+        // authentication header to generate a PayPal access token
+        // we use the client id / client secret related to the sandbox business account
+        auth: {
+          username: process.env.PAYPAL_CLIENT_ID_SANDBOX,
+          password: process.env.PAYPAL_CLIENT_SECRET_SANDBOX,
+        },
+
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    printInfo(res);
+    access_token = res.data.access_token;
+  } catch (error) {
+    printErrorInfo(error);
+  }
+
+  const authHeader = `Bearer ${access_token}`;
+  const headers = {
+    headers: {
+      Authorization: authHeader,
+    },
+  };
+
   // Create Product
   let productID = "";
   try {
@@ -89,7 +116,7 @@ export const useCase1cRequests = async () => {
 
   // the buyer approves the order
   await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, logSymbols.success);
+  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
 
   await sleep(1000);
 
