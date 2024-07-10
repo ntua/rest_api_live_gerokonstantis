@@ -1,11 +1,9 @@
 import axios from "axios";
-import { approveOrder } from "./selenium/seleniumFunctions.js";
 import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
 import {
-  createProductReqBody,
-  createOrderReqBody,
-  refundCapturedPaymentReqBody,
-} from "./requestBodies/UseCase1c.js";
+  createInvoiceTemplateReqBody,
+  fullyUpdateInvTemplateReqBody,
+} from "./requestBodies/UseCase8.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,9 +31,9 @@ const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sand
 
 var requestCounter = 1;
 
-export const useCase1cRequests = async () => {
-  // Use Case 1c : Make Order - Pay - Refund
-  console.log("USE CASE 1c : Make Order - Pay - Refund");
+export const useCase8Requests = async () => {
+  // Use Case 8 :  Invoice Templates
+  console.log("USE CASE 8: Invoice Templates");
 
   // generate PayPal access token
   let access_token = "";
@@ -44,8 +42,6 @@ export const useCase1cRequests = async () => {
       `${baseURL}/v1/oauth2/token`,
       generateAccessTokenReqBody(),
       {
-        // authentication header to generate a PayPal access token
-        // we use the client id / client secret related to the sandbox business account
         auth: {
           username: process.env.PAYPAL_CLIENT_ID_SANDBOX,
           password: process.env.PAYPAL_CLIENT_SECRET_SANDBOX,
@@ -72,97 +68,71 @@ export const useCase1cRequests = async () => {
     headers: { Authorization: authHeader, prefer: "return=representation" },
   };
 
-  // Create Product
-  let productID = "";
+  await sleep(1000);
+
+  // Create invoice template
+  let invoice_template_id = "";
   try {
     let res = await axios.post(
-      `${baseURL}/v1/catalogs/products`,
-      createProductReqBody(Date.now()),
-      headers
+      `${baseURL}/v2/invoicing/templates`,
+      createInvoiceTemplateReqBody(Date.now()),
+      headersWithPreferOption
     );
+    invoice_template_id = res.data.id;
     printInfo(res);
-    productID = res.data.id;
   } catch (error) {
     printErrorInfo(error);
   }
 
   await sleep(1000);
 
-  // Show product details
+  // List templates
   try {
     let res = await axios.get(
-      `${baseURL}/v1/catalogs/products/${productID}`,
-      headers
-    );
-    printInfo(res);
-  } catch (error) {
-    printErrorInfo(error);
-  }
-
-  // Create Order for this product
-  let approveLink = "";
-  let orderID = "";
-  try {
-    let res = await axios.post(
-      `${baseURL}/v2/checkout/orders`,
-      createOrderReqBody(),
+      `${baseURL}/v2/invoicing/templates?fields=all&page=1&page_size=10`,
       headersWithPreferOption
     );
     printInfo(res);
-    approveLink = res.data.links.find((link) => link.rel === "approve").href;
-    orderID = res.data.id;
   } catch (error) {
     printErrorInfo(error);
   }
 
   await sleep(1000);
 
-  // the buyer approves the order
-  await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
-
-  await sleep(1000);
-
-  // Capture payment for order
-  let captureID = "";
-  try {
-    let res = await axios.post(
-      `${baseURL}/v2/checkout/orders/${orderID}/capture`,
-      {},
-      headersWithPreferOption
-    );
-    printInfo(res);
-    captureID = res.data.purchase_units[0].payments.captures[0].id;
-  } catch (error) {
-    printErrorInfo(error);
-  }
-
-  await sleep(1000);
-
-  // Refund payment
-  let refundID = "";
-  try {
-    let res = await axios.post(
-      `${baseURL}/v2/payments/captures/${captureID}/refund`,
-      refundCapturedPaymentReqBody(Date.now()),
-      headersWithPreferOption
-    );
-    printInfo(res);
-    refundID = res.data.id;
-  } catch (error) {
-    printErrorInfo(error);
-  }
-
-  await sleep(1000);
-
-  // Show refund details
+  // Show template details
   try {
     let res = await axios.get(
-      `${baseURL}/v2/payments/refunds/${refundID}`,
+      `${baseURL}/v2/invoicing/templates/${invoice_template_id}`,
       headers
     );
     printInfo(res);
-    refundID = res.data.id;
+  } catch (error) {
+    printErrorInfo(error);
+  }
+
+  await sleep(1000);
+
+  // Fully update template
+  try {
+    let res = await axios.put(
+      `${baseURL}/v2/invoicing/templates/${invoice_template_id}`,
+      fullyUpdateInvTemplateReqBody(Date.now()),
+      headersWithPreferOption
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
+
+  await sleep(1000);
+
+  // Delete template
+  try {
+    let res = await axios.delete(
+      `${baseURL}/v2/invoicing/templates/${invoice_template_id}`,
+      headers
+    );
+    printInfo(res);
   } catch (error) {
     printErrorInfo(error);
   }

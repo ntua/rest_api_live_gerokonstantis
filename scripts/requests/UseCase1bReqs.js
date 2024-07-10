@@ -1,11 +1,7 @@
 import axios from "axios";
 import { approveOrder } from "./selenium/seleniumFunctions.js";
 import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
-import {
-  createProductReqBody,
-  createOrderReqBody,
-  refundCapturedPaymentReqBody,
-} from "./requestBodies/UseCase1c.js";
+import { createOrderReqBody } from "./requestBodies/UseCase1b.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,9 +29,11 @@ const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sand
 
 var requestCounter = 1;
 
-export const useCase1cRequests = async () => {
-  // Use Case 1c : Make Order - Pay - Refund
-  console.log("USE CASE 1c : Make Order - Pay - Refund");
+export const useCase1bRequests = async () => {
+  // Use Case 1b : New Order - Payment authorization - Void authorized payment
+  console.log(
+    "USE CASE 1b : New Order - Payment authorization - Void authorized payment"
+  );
 
   // generate PayPal access token
   let access_token = "";
@@ -72,34 +70,7 @@ export const useCase1cRequests = async () => {
     headers: { Authorization: authHeader, prefer: "return=representation" },
   };
 
-  // Create Product
-  let productID = "";
-  try {
-    let res = await axios.post(
-      `${baseURL}/v1/catalogs/products`,
-      createProductReqBody(Date.now()),
-      headers
-    );
-    printInfo(res);
-    productID = res.data.id;
-  } catch (error) {
-    printErrorInfo(error);
-  }
-
-  await sleep(1000);
-
-  // Show product details
-  try {
-    let res = await axios.get(
-      `${baseURL}/v1/catalogs/products/${productID}`,
-      headers
-    );
-    printInfo(res);
-  } catch (error) {
-    printErrorInfo(error);
-  }
-
-  // Create Order for this product
+  // Create new Order
   let approveLink = "";
   let orderID = "";
   try {
@@ -117,52 +88,62 @@ export const useCase1cRequests = async () => {
 
   await sleep(1000);
 
+  // Show order details
+  try {
+    let res = await axios.get(
+      `${baseURL}/v2/checkout/orders/${orderID}`,
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
+
+  await sleep(1000);
+
   // the buyer approves the order
   await approveOrder(approveLink);
   console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
 
   await sleep(1000);
 
-  // Capture payment for order
-  let captureID = "";
+  // Authorize payment for order
+  let authorizationID = "";
   try {
     let res = await axios.post(
-      `${baseURL}/v2/checkout/orders/${orderID}/capture`,
+      `${baseURL}/v2/checkout/orders/${orderID}/authorize`,
       {},
       headersWithPreferOption
     );
     printInfo(res);
-    captureID = res.data.purchase_units[0].payments.captures[0].id;
+    authorizationID = res.data.purchase_units[0].payments.authorizations[0].id;
   } catch (error) {
     printErrorInfo(error);
   }
 
   await sleep(1000);
 
-  // Refund payment
-  let refundID = "";
+  // Void authorized payment
   try {
     let res = await axios.post(
-      `${baseURL}/v2/payments/captures/${captureID}/refund`,
-      refundCapturedPaymentReqBody(Date.now()),
+      `${baseURL}/v2/payments/authorizations/${authorizationID}/void`,
+      {},
       headersWithPreferOption
     );
     printInfo(res);
-    refundID = res.data.id;
   } catch (error) {
     printErrorInfo(error);
   }
 
   await sleep(1000);
 
-  // Show refund details
+  // Show details for authorized payment
   try {
     let res = await axios.get(
-      `${baseURL}/v2/payments/refunds/${refundID}`,
+      `${baseURL}/v2/payments/authorizations/${authorizationID}`,
       headers
     );
     printInfo(res);
-    refundID = res.data.id;
   } catch (error) {
     printErrorInfo(error);
   }

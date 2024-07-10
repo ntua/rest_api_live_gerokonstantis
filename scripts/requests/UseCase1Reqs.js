@@ -73,6 +73,9 @@ export const useCase1Requests = async () => {
       Authorization: authHeader,
     },
   };
+  const headersWithPreferOption = {
+    headers: { Authorization: authHeader, prefer: "return=representation" },
+  };
 
   // Create Product
   let productID = "";
@@ -124,7 +127,7 @@ export const useCase1Requests = async () => {
     let res = await axios.post(
       `${baseURL}/v2/checkout/orders`,
       createOrderReqBody(),
-      headers
+      headersWithPreferOption
     );
     printInfo(res);
     orderID = res.data.id;
@@ -160,6 +163,7 @@ export const useCase1Requests = async () => {
     printErrorInfo(error);
   }
 
+  // the buyer approves the order
   await approveOrder(approveLink);
   console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
 
@@ -171,7 +175,7 @@ export const useCase1Requests = async () => {
     let res = await axios.post(
       `${baseURL}/v2/checkout/orders/${orderID}/authorize`,
       {},
-      headers
+      headersWithPreferOption
     );
     authorizationID = res.data.purchase_units[0].payments.authorizations[0].id;
     printInfo(res);
@@ -200,7 +204,7 @@ export const useCase1Requests = async () => {
     let res = await axios.post(
       `${baseURL}/v2/payments/authorizations/${authorizationID}/capture`,
       captureAuthorizedPaymentReqBody(Date.now()),
-      headers
+      headersWithPreferOption
     );
     captureID = res.data.id;
     printInfo(res);
