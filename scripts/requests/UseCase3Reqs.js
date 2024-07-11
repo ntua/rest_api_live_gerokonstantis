@@ -89,294 +89,291 @@ export const useCase3Requests = async () => {
     headers: { Authorization: authHeader, prefer: "return=representation" },
   };
 
-  // // Create order for this product
-  // let orderID = "";
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v2/checkout/orders`,
-  //     createOrderReqBody(),
-  //     headersWithPreferOption
-  //   );
-  //   printInfo(res);
-  //   orderID = res.data.id;
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // Create order for this product
+  let orderID = "";
+  try {
+    let res = await axios.post(
+      `${baseURL}/v2/checkout/orders`,
+      createOrderReqBody(),
+      headersWithPreferOption
+    );
+    printInfo(res);
+    orderID = res.data.id;
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // Update order
-  // try {
-  //   let res = await axios.patch(
-  //     `${baseURL}/v2/checkout/orders/${orderID}`,
-  //     updateOrderReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // Update order
+  try {
+    let res = await axios.patch(
+      `${baseURL}/v2/checkout/orders/${orderID}`,
+      updateOrderReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // Show order details
-  // let approveLink = "";
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v2/checkout/orders/${orderID}`,
-  //     headers
-  //   );
-  //   approveLink = res.data.links.find((link) => link.rel === "approve").href;
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // Show order details
+  let approveLink = "";
+  try {
+    let res = await axios.get(
+      `${baseURL}/v2/checkout/orders/${orderID}`,
+      headers
+    );
+    approveLink = res.data.links.find((link) => link.rel === "approve").href;
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // // the buyer approves the order
-  // await approveOrder(approveLink);
-  // console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
+  // the buyer approves the order
+  await approveOrder(approveLink);
+  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
 
-  // // authorize payment for order
-  // let authorizationID = "";
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v2/checkout/orders/${orderID}/authorize`,
-  //     {},
-  //     headersWithPreferOption
-  //   );
-  //   authorizationID = res.data.purchase_units[0].payments.authorizations[0].id;
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // authorize payment for order
+  let authorizationID = "";
+  try {
+    let res = await axios.post(
+      `${baseURL}/v2/checkout/orders/${orderID}/authorize`,
+      {},
+      headersWithPreferOption
+    );
+    authorizationID = res.data.purchase_units[0].payments.authorizations[0].id;
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // show details for authorized payment
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v2/payments/authorizations/${authorizationID}`,
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // show details for authorized payment
+  try {
+    let res = await axios.get(
+      `${baseURL}/v2/payments/authorizations/${authorizationID}`,
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // capture authorized payment
-  // let captureID = "";
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v2/payments/authorizations/${authorizationID}/capture`,
-  //     captureAuthorizedPaymentReqBody(Date.now()),
-  //     headersWithPreferOption
-  //   );
-  //   captureID = res.data.id;
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // capture authorized payment
+  let captureID = "";
+  try {
+    let res = await axios.post(
+      `${baseURL}/v2/payments/authorizations/${authorizationID}/capture`,
+      captureAuthorizedPaymentReqBody(Date.now()),
+      headersWithPreferOption
+    );
+    captureID = res.data.id;
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // show captured payment details
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v2/payments/captures/${captureID}`,
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // show captured payment details
+  try {
+    let res = await axios.get(
+      `${baseURL}/v2/payments/captures/${captureID}`,
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // add tracking information
-  // let trackingID = "";
-  // const trackingNumber = Date.now();
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/shipping/trackers-batch`,
-  //     addTrackingInfoReqBody(captureID, trackingNumber),
-  //     headers
-  //   );
-  //   trackingID =
-  //     res.data.tracker_identifiers[0].transaction_id +
-  //     "-" +
-  //     `${trackingNumber}`;
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // add tracking information
+  let trackingID = "";
+  const trackingNumber = Date.now();
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/shipping/trackers-batch`,
+      addTrackingInfoReqBody(captureID, trackingNumber),
+      headers
+    );
+    trackingID =
+      res.data.tracker_identifiers[0].transaction_id +
+      "-" +
+      `${trackingNumber}`;
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // show tracking information
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v1/shipping/trackers/${trackingID}`,
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // show tracking information
+  try {
+    let res = await axios.get(
+      `${baseURL}/v1/shipping/trackers/${trackingID}`,
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(1000);
+  await sleep(1000);
 
-  // // the buyer creates a new dispute
-  // await createDispute();
-  // console.log(`${requestCounter++}. Dispute submitted`, "\x1b[32m✔\x1b[0m");
+  // the buyer creates a new dispute
+  await createDispute();
+  console.log(`${requestCounter++}. Dispute submitted`, "\x1b[32m✔\x1b[0m");
 
-  // // 5 mininutes waiting time for the dispute to be visible
-  // await sleep(1000 * 3.5 * 60);
+  // 5 mininutes waiting time for the dispute to be visible
+  await sleep(1000 * 3.5 * 60);
 
-  // // show disputes related to the previous transaction
-  // let dispute_id = "";
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v1/customer/disputes?disputed_transaction_id=${captureID}`,
-  //     headers
-  //   );
-  //   dispute_id = res.data.items[0].dispute_id;
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // show disputes related to the previous transaction
+  let dispute_id = "";
+  try {
+    let res = await axios.get(
+      `${baseURL}/v1/customer/disputes?disputed_transaction_id=${captureID}`,
+      headers
+    );
+    dispute_id = res.data.items[0].dispute_id;
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(500);
+  await sleep(500);
 
-  // // show details about this dispute
-  // try {
-  //   let res = await axios.get(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}`,
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // show details about this dispute
+  try {
+    let res = await axios.get(
+      `${baseURL}/v1/customer/disputes/${dispute_id}`,
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(10000);
+  await sleep(10000);
 
-  // // the seller makes offer to resolve the dispute
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/make-offer`,
-  //     offerRefundReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // the seller makes offer to resolve the dispute
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/make-offer`,
+      offerRefundReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(30000);
+  await sleep(30000);
 
-  // await denyOffer(dispute_id);
-  // console.log(`${requestCounter++}. Offer was rejected`, "\x1b[32m✔\x1b[0m");
+  await denyOffer(dispute_id);
+  console.log(`${requestCounter++}. Offer was rejected`, "\x1b[32m✔\x1b[0m");
 
-  // await sleep(20000);
+  await sleep(20000);
 
-  // // the seller sends a message to the buyer
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/send-message`,
-  //     sendMessageReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // the seller sends a message to the buyer
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/send-message`,
+      sendMessageReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(20000);
+  await sleep(20000);
 
-  // // Escalate dispute to claim => a PayPal agent will decide
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/escalate`,
-  //     escalateDisputeToClaimReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // Escalate dispute to claim => a PayPal agent will decide
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/escalate`,
+      escalateDisputeToClaimReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // // wait ~3 minutes
-  // await sleep(3 * 60 * 1000);
+  // wait ~3 minutes
+  await sleep(3 * 60 * 1000);
 
-  // // The seller provides evidence
-  // try {
-  //   let body = provideEvidenceReqBody(trackingNumber);
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/provide-evidence`,
-  //     body,
-  //     {
-  //       headers: {
-  //         ...body.getHeaders(),
-  //         Authorization: authHeader,
-  //       },
-  //     }
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // The seller provides evidence
+  try {
+    let body = provideEvidenceReqBody(trackingNumber);
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/provide-evidence`,
+      body,
+      {
+        headers: {
+          ...body.getHeaders(),
+          Authorization: authHeader,
+        },
+      }
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(5000);
+  await sleep(5000);
 
-  // // The seller provides extra supporting information
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/provide-supporting-info`,
-  //     provideSupportingInfoReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // The seller provides extra supporting information
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/provide-supporting-info`,
+      provideSupportingInfoReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(120000);
+  await sleep(120000);
 
-  // // The PayPal agent asks buyer to provide evidence
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/require-evidence`,
-  //     updateDisputeStatusReqBody(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
+  // The PayPal agent asks buyer to provide evidence
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/require-evidence`,
+      updateDisputeStatusReqBody(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // await sleep(30000);
-  // await buyerProvidesEvidence(dispute_id);
-  // console.log(`${requestCounter++}. Buyer provided evidence`, "\x1b[32m✔\x1b[0m");
-  // await sleep(150000);
+  await sleep(30000);
+  await buyerProvidesEvidence(dispute_id);
+  console.log(`${requestCounter++}. Buyer provided evidence`, "\x1b[32m✔\x1b[0m");
+  await sleep(150000);
 
-  let dispute_id="PP-R-XTI-10096400"
-  let trackingNumber="1720693671115"
+  // The PayPal agent settles the dispute in buyer's favor
+  try {
+    let res = await axios.post(
+      `${baseURL}/v1/customer/disputes/${dispute_id}/adjudicate`,
+      settleDisputeBuyer(),
+      headers
+    );
+    printInfo(res);
+  } catch (error) {
+    printErrorInfo(error);
+  }
 
-  // // The PayPal agent settles the dispute in buyer's favor
-  // try {
-  //   let res = await axios.post(
-  //     `${baseURL}/v1/customer/disputes/${dispute_id}/adjudicate`,
-  //     settleDisputeBuyer(),
-  //     headers
-  //   );
-  //   printInfo(res);
-  // } catch (error) {
-  //   printErrorInfo(error);
-  // }
-
-  // await sleep(4 * 60 * 1000);
+  await sleep(4 * 60 * 1000);
   // The seller provides evidence
   try {
     let body = provideEvidenceReqBody(trackingNumber);
