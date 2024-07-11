@@ -1,6 +1,8 @@
 const https = require('https');
 const axios = require('axios');
+const fs = require('fs');
 const Request = require('../models/Requests');
+const FormData = require('form-data');
 const { inferType } = require("@jsonhero/json-infer-types");
 
 const agent = new https.Agent({ rejectUnauthorized: false });
@@ -14,7 +16,7 @@ const formatDomain = (domain) => {
     return domain.replace(/_/g, '.');
 };
 
-const makeRequest = async (target, method, originalHeaders, body) => {
+const makeRequest = async (target, method, originalHeaders, body, files) => {
     let headers = {};
     for (let key of Object.keys(originalHeaders)) {
         if (!['host', 'content-length', 'transfer-encoding', 'connection'].includes(key.toLowerCase())) {
@@ -22,7 +24,27 @@ const makeRequest = async (target, method, originalHeaders, body) => {
         }
     }
     let options = { method, headers, httpsAgent: agent };
-    if (Object.keys(body).length !== 0) options.data = body;
+    
+    if(files){
+        const form = new FormData();
+        // Add JSON fields to the form
+        for (const key in body) {
+            form.append(key, body[key],{
+                contentType: "application/json",
+            });
+        }
+        // Add the files to the form
+        for(const file of files){
+            form.append(file.fieldname, fs.createReadStream(file.path), {
+                filename: file.originalname,
+            });
+        }
+        options.data = form;
+    }
+    else{
+        if (Object.keys(body).length !== 0) options.data = body;
+    }
+
     return await axios(target, options);
 };
 
@@ -53,7 +75,7 @@ const saveRequest = async (ip, method, url, endpoint, headers, body, query, para
 };
 
 exports.mim = async (req, res) => {
-    const { ip, headers, method, query } = req;
+    const { ip, headers, method, query, files } = req;
     let body = req.body;
     const queryString = new URLSearchParams(query).toString();
     let params = req.params[0];
@@ -63,8 +85,13 @@ exports.mim = async (req, res) => {
     try {
         domain = formatDomain(domain);
         const target = `${domain}/${params}${queryString ? `?${queryString}` : ''}`;
-        const response = await makeRequest(target, method, headers, body);
+        const response = await makeRequest(target, method, headers, body, files);
         const { status: responseStatus, data } = response;
+        if(files){
+            for(const file of files){
+                body[file.fieldname]=file
+            }
+        }
         const bodySchema = constructSchema(body);
         await saveRequest(ip, method, domain, params, headers, bodySchema, query, paramsArr, responseStatus, data);
         return res.status(responseStatus).json(data);
