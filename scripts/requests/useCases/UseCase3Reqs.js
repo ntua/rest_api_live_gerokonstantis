@@ -1,11 +1,11 @@
 import axios from "axios";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
 import {
   createDispute,
   approveOrder,
-  denyOffer,
+  denyOrAcceptOffer,
   buyerProvidesEvidence,
-} from "./selenium/seleniumFunctions.js";
+} from "../selenium/seleniumFunctions.js";
 import {
   createOrderReqBody,
   captureAuthorizedPaymentReqBody,
@@ -18,8 +18,8 @@ import {
   updateDisputeStatusReqBody,
   settleDisputeBuyer,
   settleDisputeSeller,
-} from "./requestBodies/UseCase3.js";
-import { updateOrderReqBody } from "./requestBodies/UseCase1.js";
+} from "../requestBodies/UseCase3.js";
+import { updateOrderReqBody } from "../requestBodies/UseCase1.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -60,9 +60,6 @@ export const useCase3Requests = async () => {
       `${baseURL}/v1/oauth2/token`,
       generateAccessTokenReqBody(),
       {
-        // authentication header to generate a PayPal access token
-        // handling tracking information requires the initial (default) client id / client secret
-        // (owned by a random merchant, not the one associated with the sandbox business account)
         auth: {
           username: process.env.PAYPAL_CLIENT_ID_SANDBOX2,
           password: process.env.PAYPAL_CLIENT_SECRET_SANDBOX2,
@@ -133,8 +130,12 @@ export const useCase3Requests = async () => {
   }
 
   // the buyer approves the order
-  await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
+  (await approveOrder(approveLink))
+    ? console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m")
+    : console.log(
+        `${requestCounter++}. Failed to approve order`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
   // authorize payment for order
   let authorizationID = "";
@@ -225,14 +226,20 @@ export const useCase3Requests = async () => {
     printErrorInfo(error);
   }
 
-  await sleep(1000);
+  await sleep(5000);
 
   // the buyer creates a new dispute
-  await createDispute();
-  console.log(`${requestCounter++}. Dispute submitted`, "\x1b[32m✔\x1b[0m");
+  (await createDispute("80.00"))
+    ? console.log(`${requestCounter++}. Dispute submitted`, "\x1b[32m✔\x1b[0m")
+    : console.log(
+        `${requestCounter++}. Dispute submission failed`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
-  // 5 mininutes waiting time for the dispute to be visible
-  await sleep(1000 * 3.5 * 60);
+  console.log("\x1b[36mWait for 4 minutes ... \x1b[0m");
+
+  // 4 minutes waiting time for the dispute to be visible
+  await sleep(1000 * 4 * 60);
 
   // show disputes related to the previous transaction
   let dispute_id = "";
@@ -274,10 +281,14 @@ export const useCase3Requests = async () => {
     printErrorInfo(error);
   }
 
-  await sleep(30000);
+  await sleep(40000);
 
-  await denyOffer(dispute_id);
-  console.log(`${requestCounter++}. Offer was rejected`, "\x1b[32m✔\x1b[0m");
+  (await denyOrAcceptOffer(dispute_id, "deny"))
+    ? console.log(`${requestCounter++}. Offer was rejected`, "\x1b[32m✔\x1b[0m")
+    : console.log(
+        `${requestCounter++}. Failed to deny offer`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
   await sleep(20000);
 
@@ -306,6 +317,8 @@ export const useCase3Requests = async () => {
   } catch (error) {
     printErrorInfo(error);
   }
+
+  console.log("\x1b[36mWait for 3 minutes ... \x1b[0m");
 
   // wait ~3 minutes
   await sleep(3 * 60 * 1000);
@@ -342,7 +355,8 @@ export const useCase3Requests = async () => {
     printErrorInfo(error);
   }
 
-  await sleep(120000);
+  console.log("\x1b[36mWait for about 3 minutes ... \x1b[0m");
+  await sleep(150000);
 
   // The PayPal agent asks buyer to provide evidence
   try {
@@ -357,8 +371,18 @@ export const useCase3Requests = async () => {
   }
 
   await sleep(30000);
-  await buyerProvidesEvidence(dispute_id);
-  console.log(`${requestCounter++}. Buyer provided evidence`, "\x1b[32m✔\x1b[0m");
+
+  (await buyerProvidesEvidence(dispute_id))
+    ? console.log(
+        `${requestCounter++}. Buyer provided evidence`,
+        "\x1b[32m✔\x1b[0m"
+      )
+    : console.log(
+        `${requestCounter++}. Failed to deny offer`,
+        "\x1b[31m✕\x1b[0m"
+      );
+
+  console.log("\x1b[36mWait for about 3 minutes ... \x1b[0m");
   await sleep(150000);
 
   // The PayPal agent settles the dispute in buyer's favor
@@ -373,6 +397,7 @@ export const useCase3Requests = async () => {
     printErrorInfo(error);
   }
 
+  console.log("\x1b[36mWait for 4 minutes ... \x1b[0m");
   await sleep(4 * 60 * 1000);
   // The seller provides evidence
   try {
@@ -391,6 +416,7 @@ export const useCase3Requests = async () => {
   } catch (error) {
     printErrorInfo(error);
   }
+  console.log("\x1b[36mWait for 1 minute ... \x1b[0m");
   await sleep(60000);
 
   // The PayPal agent settles the dispute in seller's favor

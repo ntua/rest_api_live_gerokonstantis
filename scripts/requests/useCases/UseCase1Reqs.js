@@ -7,9 +7,9 @@ import {
   captureAuthorizedPaymentReqBody,
   addTrackingInfoReqBody,
   updateTrackingInfoReqBody,
-} from "./requestBodies/UseCase1.js";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
-import { approveOrder } from "./selenium/seleniumFunctions.js";
+} from "../requestBodies/UseCase1.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
+import { approveOrder } from "../selenium/seleniumFunctions.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -164,8 +164,12 @@ export const useCase1Requests = async () => {
   }
 
   // the buyer approves the order
-  await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
+  (await approveOrder(approveLink))
+    ? console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m")
+    : console.log(
+        `${requestCounter++}. Failed to approve order`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
   await sleep(1000);
 

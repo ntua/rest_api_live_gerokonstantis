@@ -33,12 +33,14 @@ const makeRequest = async (target, method, originalHeaders, body, files) => {
                 contentType: "application/json",
             });
         }
+
         // Add the files to the form
-        for(const file of files){
+        files.map((file) => (
             form.append(file.fieldname, fs.createReadStream(file.path), {
                 filename: file.originalname,
-            });
-        }
+            })
+        ))
+        
         options.data = form;
     }
     else{
@@ -87,11 +89,7 @@ exports.mim = async (req, res) => {
         const target = `${domain}/${params}${queryString ? `?${queryString}` : ''}`;
         const response = await makeRequest(target, method, headers, body, files);
         const { status: responseStatus, data } = response;
-        if(files){
-            for(const file of files){
-                body[file.fieldname]=file
-            }
-        }
+        if (files) files.map((file) => (body[file.fieldname] = file));
         const bodySchema = constructSchema(body);
         await saveRequest(ip, method, domain, params, headers, bodySchema, query, paramsArr, responseStatus, data);
         return res.status(responseStatus).json(data);

@@ -1,9 +1,9 @@
 import axios from "axios";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
 import {
   createInvoiceTemplateReqBody,
   fullyUpdateInvTemplateReqBody,
-} from "./requestBodies/UseCase8.js";
+} from "../requestBodies/UseCase8.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

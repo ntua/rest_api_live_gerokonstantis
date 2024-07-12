@@ -17,43 +17,51 @@ export const approveOrder = async (approveLink) => {
     // visit approveLink URL
     await driver.get(approveLink);
 
-    await driver.sleep(1000); // Delay needed
-
     // fill in the email
-    let emailInput = await driver.findElement(By.id("email"));
+    let emailInput = await driver.wait(
+      until.elementLocated(By.id("email")),
+      60000
+    );
+    await driver.sleep(1000); // Delay needed
     await emailInput.sendKeys(process.env.PAYPAL_EMAIL);
     await driver.sleep(500); // Delay needed
     // click Next button
     let nextButton = await driver.findElement(By.id("btnNext"));
     await nextButton.click();
-    await driver.sleep(2500); // Delay needed
 
     // fill in the password
-    const passwordInput = await driver.findElement(By.id("password"));
+    let passwordInput = await driver.wait(
+      until.elementLocated(By.id("password")),
+      60000
+    );
+    await driver.sleep(2500); // Delay needed
     await passwordInput.sendKeys(process.env.PAYPAL_PASSWORD);
     await driver.sleep(500); // Delay needed
     // Click login button
     let btnLogin = await driver.findElement(By.id("btnLogin"));
     await btnLogin.click();
 
-    await driver.sleep(500); // Delay needed
-
     // Click submit button
-    let submitBtn = await driver.findElement(By.id("payment-submit-btn"));
+    let submitBtn = await driver.wait(
+      until.elementLocated(By.id("payment-submit-btn")),
+      60000
+    );
+    await driver.sleep(500); // Delay needed
     await submitBtn.click();
 
-    await driver.sleep(3500); // Delay needed
+    await driver.sleep(8000); // Delay needed
 
     await driver.manage().setTimeouts({ implicit: 500 });
+    return true;
   } catch (e) {
-    console.log(e);
+    return false;
   } finally {
     // close the browser
     await driver.quit();
   }
 };
 
-export const createDispute = async () => {
+export const createDispute = async (amount) => {
   let driver;
   try {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -72,33 +80,41 @@ export const createDispute = async () => {
     await driver.sleep(1000); // Delay needed
 
     // fill in the email
-    let emailInput = await driver.findElement(By.id("email"));
+    let emailInput = await driver.wait(
+      until.elementLocated(By.id("email")),
+      60000
+    );
+    await driver.sleep(1000); // Delay needed
     await emailInput.sendKeys(process.env.PAYPAL_EMAIL);
     await driver.sleep(500); // Delay needed
+
     // click Next button
     let nextButton = await driver.findElement(By.id("btnNext"));
     await nextButton.click();
-    await driver.sleep(2500); // Delay needed
 
     // fill in the password
-    const passwordInput = await driver.findElement(By.id("password"));
+    let passwordInput = await driver.wait(
+      until.elementLocated(By.id("password")),
+      60000
+    );
+    await driver.sleep(2500); // Delay needed
     await passwordInput.sendKeys(process.env.PAYPAL_PASSWORD);
     await driver.sleep(500); // Delay needed
+
     // Click login button
     let btnLogin = await driver.findElement(By.id("btnLogin"));
     await btnLogin.click();
 
-    //stop loading the page
-    await driver.sleep(1000);
-    await driver.executeScript("window.stop();");
-    await driver.sleep(1000);
-    await driver.executeScript("window.stop();");
-
     // find and click the latest payment in the list of payments
-    let payment = await driver.findElement(
-      By.className("counterparty_name css-1htline spf-1yo2lxy-text_body_strong")
+    let payment = await driver.wait(
+      until.elementLocated(
+        By.className(
+          "counterparty_name css-1htline spf-1yo2lxy-text_body_strong"
+        )
+      ),
+      60000
     );
-
+    await driver.sleep(1000);
     await payment.click();
 
     await driver.sleep(4000); // Delay needed
@@ -116,7 +132,7 @@ export const createDispute = async () => {
       "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
       await driver.wait(
         until.elementLocated(By.id("activity_paid_with_view")),
-        20000
+        60000
       )
     );
 
@@ -133,19 +149,16 @@ export const createDispute = async () => {
     );
 
     // choose the type of your problem
-    // const problemTypeBtn = await driver.findElement(
-    //   By.css('button[data-testid="elg-item-1"]')
-    // );
     let problemTypeBtn = await driver.wait(
       until.elementLocated(By.css('button[data-testid="elg-item-1"]')),
-      25000
+      60000
     );
     await driver.sleep(1000);
     await problemTypeBtn.click();
 
     await driver.sleep(1000); // Delay needed
 
-    // scroll until all the inputs are visible
+    // scroll until all inputs are visible
     await driver.executeScript(
       "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
       await driver.findElement(By.className("step-title"))
@@ -195,7 +208,6 @@ export const createDispute = async () => {
     const defectiveProductOptionBtn = await driver.findElement(
       By.css('label[for="selection_items.0.subIssue_DEFECTIVE"]')
     );
-
     await defectiveProductOptionBtn.click();
 
     await driver.sleep(1000); // Delay needed
@@ -219,6 +231,7 @@ export const createDispute = async () => {
 
     await driver.sleep(1000); // Delay needed
 
+    // scroll to the top of the page
     await driver.executeScript(
       "window.scrollTo({ top: 0, behavior: 'smooth' });"
     );
@@ -251,9 +264,12 @@ export const createDispute = async () => {
     );
     // Click on the date picker to open the calendar
     await datePicker.click();
-    // Select a specific date
-    const selectedDate = "07-08-2024";
-    // Format the date for sending keys
+    // Select a specific date (the current date)
+    const now = new Date();
+    const selectedDate = `${String(now.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}-${String(now.getDate()).padStart(2, "0")}-${now.getFullYear()}`;
     await datePicker.sendKeys(selectedDate, Key.ENTER);
 
     await driver.sleep(1000); // Delay needed
@@ -262,7 +278,7 @@ export const createDispute = async () => {
     const refundAmountInput = await driver.findElement(
       By.id("text-input-items.0.expected_refund")
     );
-    await refundAmountInput.sendKeys("80,00");
+    await refundAmountInput.sendKeys(amount);
 
     await driver.sleep(500); // Delay needed
 
@@ -289,11 +305,11 @@ export const createDispute = async () => {
     const NextButton = await driver.findElement(
       By.className("filing__step-continue-button")
     );
-
     await NextButton.click();
 
     await driver.sleep(1000); // Delay needed
 
+    // scroll to the top of the page
     await driver.executeScript(
       "window.scrollTo({ top: 0, behavior: 'smooth' });"
     );
@@ -304,7 +320,6 @@ export const createDispute = async () => {
     const noContactedOption = await driver.findElement(
       By.css('label[for="selection_merchant_contacted_NO"]')
     );
-
     await noContactedOption.click();
 
     await driver.sleep(1000); // Delay needed
@@ -313,7 +328,6 @@ export const createDispute = async () => {
     const NextBttn = await driver.findElement(
       By.className("filing__step-continue-button")
     );
-
     await NextBttn.click();
 
     await driver.sleep(1000); // Delay needed
@@ -326,12 +340,13 @@ export const createDispute = async () => {
 
     await driver.sleep(1000); // Delay needed
 
-    // Add a file
+    // upload file
+    const fileInput = await driver.findElement(By.className("dz-hidden-input"));
+    await fileInput.sendKeys(
+      path.resolve(path.resolve("./requests/selenium/images/image1.jpg"))
+    );
 
-    let fileInput = driver.findElement(By.css('input[type="file"]'));
-    fileInput.sendKeys(path.resolve("./requests/selenium/images/image1.jpg"));
-
-    await driver.sleep(3000); // Delay needed
+    await driver.sleep(2000); // Delay needed
 
     // add some extra info
     const extraInfoInput = await driver.findElement(By.id("text-input-notes"));
@@ -343,21 +358,21 @@ export const createDispute = async () => {
     const SubmitBtn = await driver.findElement(
       By.className("filing__step-continue-button")
     );
-
     await SubmitBtn.click();
 
-    await driver.sleep(4000); // Delay needed
+    await driver.sleep(8000); // Delay needed
 
     await driver.manage().setTimeouts({ implicit: 500 });
+    return true;
   } catch (e) {
-    console.log(e);
+    return false;
   } finally {
     // close the browser
     await driver.quit();
   }
 };
 
-export const denyOffer = async (dispute_id) => {
+export const denyOrAcceptOffer = async (dispute_id, mode) => {
   let driver;
   try {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -366,78 +381,188 @@ export const denyOffer = async (dispute_id) => {
       .manage()
       .window()
       .setRect({ width: 1000, height: 950, x: 120, y: 50 });
-    // visit approveLink URL
+
+    // visit PayPal resolution center
     await driver.get(
       `https://www.sandbox.paypal.com/resolutioncenter/view/${dispute_id}/inquiry`
     );
 
     // fill in the email
-    let emailInput = await driver.findElement(By.id("email"));
+    let emailInput = await driver.wait(
+      until.elementLocated(By.id("email")),
+      60000
+    );
+    await driver.sleep(1000); // Delay needed
     await emailInput.sendKeys(process.env.PAYPAL_EMAIL);
+
     await driver.sleep(500); // Delay needed
+
     // click Next button
     let nextButton = await driver.findElement(By.id("btnNext"));
     await nextButton.click();
-    await driver.sleep(2500); // Delay needed
 
     // fill in the password
-    const passwordInput = await driver.findElement(By.id("password"));
+    let passwordInput = await driver.wait(
+      until.elementLocated(By.id("password")),
+      60000
+    );
+    await driver.sleep(2500); // Delay needed
     await passwordInput.sendKeys(process.env.PAYPAL_PASSWORD);
+
     await driver.sleep(500); // Delay needed
+
     // Click login button
     let btnLogin = await driver.findElement(By.id("btnLogin"));
     await btnLogin.click();
 
-    await driver.sleep(5000); // Delay needed
+    await driver.sleep(7000); // Delay needed
 
     // scroll down
     await driver.executeScript(
       "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
       await driver.wait(
-        until.elementLocated(By.className("chat-window__header-title ")),
-        20000
+        until.elementLocated(
+          By.className(
+            mode === "deny"
+              ? "chat-window__header-title "
+              : "card-header__message"
+          )
+        ),
+        60000
       )
     );
 
     await driver.sleep(4000); // Delay needed
 
-    // deny offer
-    let denyOfferBtn = await driver.findElement(
-      By.css('button[data-pa-click="Deny and send message"]')
+    // deny or accept offer
+    let denyOrAcceptOfferBtn = await driver.findElement(
+      By.css(
+        mode === "deny"
+          ? 'button[data-pa-click="Deny and send message"]'
+          : 'button[data-pa-click="Accept and send message"]'
+      )
     );
-    await denyOfferBtn.click();
-
-    await driver.sleep(1000); // Delay needed
-
-    // fill in the reason why you deny the offer and submit
-    let denyReasonInput = await driver.findElement(
-      By.css('textarea[data-testid="note"]')
-    );
-    await denyReasonInput.clear();
-    await denyReasonInput.sendKeys("refund offer is very low.");
-    await driver.sleep(1000); // Delay needed
-    let submitBtn = await driver.findElement(By.className("btn--block"));
-    await submitBtn.click();
+    await denyOrAcceptOfferBtn.click();
 
     await driver.sleep(3000); // Delay needed
 
-    let finishBtn = await driver.findElement(
-      By.className(" acknowledge__done")
-    );
+    if (mode === "deny") {
+      // fill in the reason why you deny the offer
+      let denyReasonInput = await driver.findElement(
+        By.css('textarea[data-testid="note"]')
+      );
+      await denyReasonInput.clear();
+      await denyReasonInput.sendKeys("Refund offer is very low.");
+    }
+    await driver.sleep(1000); // Delay needed
+
+    // submit
+    let submitBtn = await driver.findElement(By.className("btn--block"));
+    await submitBtn.click();
+
+    await driver.sleep(5000); // Delay needed
+
+    let finishBtn = await driver.findElement(By.className("acknowledge__done"));
     await finishBtn.click();
 
     await driver.sleep(5000); // Delay needed
 
+    // after accepting the offer, return the item back to the seller
+    // provide tracking information
+    if (mode === "accept") {
+      await driver.sleep(12000);
+      //refresh the page
+      await driver.get(
+        `https://www.sandbox.paypal.com/resolutioncenter/view/${dispute_id}/inquiry`
+      );
+
+      await driver.sleep(6000);
+
+      // scroll down
+      await driver.executeScript(
+        "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
+        // add tracking infomation so as to return the product back to the seller
+        await driver.wait(
+          until.elementLocated(
+            By.css('div[data-testid="card-return-shipping-other-fields"]')
+          ),
+          60000
+        )
+      );
+      // add tracking infomation so as to return the product back to the seller
+      let trackingInfoBtn = await driver.wait(
+        until.elementLocated(
+          By.css('button[data-testid="provide-tracking-info"]')
+        ),
+        60000
+      );
+      await driver.sleep(1000);
+      await trackingInfoBtn.click();
+
+      // add tracking number
+      let trackingNumberInput = await driver.wait(
+        until.elementLocated(
+          By.css('input[data-testid="trancking-number-input"]')
+        ),
+        60000
+      );
+      await driver.sleep(1000);
+      await trackingNumberInput.clear();
+      await trackingNumberInput.sendKeys("6666666666");
+
+      await driver.sleep(1000);
+
+      // select carrier
+      let carrierBtn = await driver.findElement(
+        By.css('button[data-testid="tracking-info-shipped-by"]')
+      );
+      await carrierBtn.click();
+
+      await driver.sleep(1000);
+
+      // select ACS as carrier
+      let ACSoptionBtn = await driver.findElement(By.id("smenu_item_GRC_ACS"));
+      await ACSoptionBtn.click();
+
+      await driver.sleep(1000);
+
+      // write a note
+      let noteInput = await driver.findElement(
+        By.css('textarea[data-testid="note"]')
+      );
+      await noteInput.clear();
+      await noteInput.sendKeys("Hello there! Your product is on its way back.");
+
+      await driver.sleep(1000); // Delay needed
+
+      // submit
+      let SubmitBtn = await driver.wait(
+        until.elementLocated(By.className("btn--block")),
+        60000
+      );
+      await SubmitBtn.click();
+
+      let finishBtn = await driver.wait(
+        until.elementLocated(By.className("acknowledge__done")),
+        60000
+      );
+      await driver.sleep(1000); // Delay needed
+      await finishBtn.click();
+
+      await driver.sleep(6000); // Delay needed
+    }
+
     await driver.manage().setTimeouts({ implicit: 500 });
+    return true;
   } catch (e) {
-    console.log(e);
+    return false;
   } finally {
     // close the browser
     await driver.quit();
   }
 };
 
-// the buyer appeals the decision of the PayPal agent
+// the buyer provides evidence
 export const buyerProvidesEvidence = async (dispute_id) => {
   let driver;
   try {
@@ -447,7 +572,8 @@ export const buyerProvidesEvidence = async (dispute_id) => {
       .manage()
       .window()
       .setRect({ width: 500, height: 1000, x: 120, y: 50 });
-    // visit approveLink URL
+
+    // visit PayPal resolution center
     await driver.get(
       `https://www.sandbox.paypal.com/resolutioncenter/view/${dispute_id}/`
     );
@@ -455,18 +581,29 @@ export const buyerProvidesEvidence = async (dispute_id) => {
     await driver.sleep(1000); // Delay needed
 
     // fill in the email
-    let emailInput = await driver.findElement(By.id("email"));
+    let emailInput = await driver.wait(
+      until.elementLocated(By.id("email")),
+      60000
+    );
+    await driver.sleep(1000); // Delay needed
     await emailInput.sendKeys(process.env.PAYPAL_EMAIL);
+
     await driver.sleep(500); // Delay needed
+
     // click Next button
     let nextButton = await driver.findElement(By.id("btnNext"));
     await nextButton.click();
-    await driver.sleep(2500); // Delay needed
 
     // fill in the password
-    const passwordInput = await driver.findElement(By.id("password"));
+    let passwordInput = await driver.wait(
+      until.elementLocated(By.id("password")),
+      60000
+    );
+    await driver.sleep(2500); // Delay needed
     await passwordInput.sendKeys(process.env.PAYPAL_PASSWORD);
+
     await driver.sleep(500); // Delay needed
+
     // Click login button
     let btnLogin = await driver.findElement(By.id("btnLogin"));
     await btnLogin.click();
@@ -478,11 +615,12 @@ export const buyerProvidesEvidence = async (dispute_id) => {
       "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
       await driver.wait(
         until.elementLocated(By.className("list__wrapper")),
-        25000
+        60000
       )
     );
 
     await driver.sleep(1000); // Delay needed
+
     // Click login button
     let ReplyBtn = await driver.findElement(
       By.css('button[data-testid="respond"]')
@@ -496,29 +634,29 @@ export const buyerProvidesEvidence = async (dispute_id) => {
       "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'start' });",
       await driver.wait(
         until.elementLocated(By.className("additional-info__button")),
-        25000
+        60000
       )
     );
 
     await driver.sleep(1000); // Delay needed
 
-    // upload file
-
-    // Locate the file input element
-    let fileInput = await driver.findElement(By.id("upload"));
+    // upload evidence file
+    const fileInput = await driver.findElement(By.className("dz-hidden-input"));
     await fileInput.sendKeys(
-      path.resolve("./requests/selenium/images/image1.jpg")
+      path.resolve(path.resolve("./requests/selenium/files/evidence2.pdf"))
     );
 
     await driver.sleep(2000); // Delay needed
 
-    // fill in your message
+    // write a message
     let additionalInfoInput = await driver.findElement(
       By.css('textarea[data-testid="additional-info-note"]')
     );
 
     await additionalInfoInput.clear();
-    await additionalInfoInput.sendKeys("You are wrong PayPal!");
+    await additionalInfoInput.sendKeys(
+      "Pay attention to the evidence I provide please!"
+    );
     await driver.sleep(1000); // Delay needed
 
     // Click submit button
@@ -528,12 +666,19 @@ export const buyerProvidesEvidence = async (dispute_id) => {
     await SubmitBtn.click();
     await driver.sleep(3500); // Delay needed
 
+    let FinishBtn = await driver.findElement(
+      By.css('button[data-testid="acknowledge-done"]')
+    );
+    await FinishBtn.click();
+    await driver.sleep(5000); // Delay needed
+
     await driver.manage().setTimeouts({ implicit: 500 });
+    return true;
   } catch (e) {
-    console.log(e);
+    return false;
   } finally {
     // close the browser
-    // await driver.quit();
+    await driver.quit();
   }
 };
 
@@ -547,24 +692,36 @@ export const approveSubscription = async (approveLink) => {
       .manage()
       .window()
       .setRect({ width: 600, height: 900, x: 120, y: 50 });
+
     // visit approveLink URL
     await driver.get(approveLink);
 
     await driver.sleep(1000); // Delay needed
 
     // fill in the email
-    let emailInput = await driver.findElement(By.id("email"));
+    let emailInput = await driver.wait(
+      until.elementLocated(By.id("email")),
+      60000
+    );
+    await driver.sleep(1000); // Delay needed
     await emailInput.sendKeys(process.env.PAYPAL_EMAIL);
+
     await driver.sleep(500); // Delay needed
+
     // click Next button
     let nextButton = await driver.findElement(By.id("btnNext"));
     await nextButton.click();
-    await driver.sleep(2500); // Delay needed
 
     // fill in the password
-    const passwordInput = await driver.findElement(By.id("password"));
+    let passwordInput = await driver.wait(
+      until.elementLocated(By.id("password")),
+      60000
+    );
+    await driver.sleep(2500); // Delay needed
     await passwordInput.sendKeys(process.env.PAYPAL_PASSWORD);
+
     await driver.sleep(500); // Delay needed
+
     // Click login button
     let btnLogin = await driver.findElement(By.id("btnLogin"));
     await btnLogin.click();
@@ -572,15 +729,17 @@ export const approveSubscription = async (approveLink) => {
     // Click accept button
     let submitBtn = await driver.wait(
       until.elementLocated(By.css('input[data-test-id="continueButton"]')),
-      50000
+      60000
     );
+    await driver.sleep(2000); // Delay needed
     await submitBtn.click();
 
     await driver.sleep(20000); // Delay needed
 
     await driver.manage().setTimeouts({ implicit: 500 });
+    return true;
   } catch (e) {
-    console.log(e);
+    return false;
   } finally {
     // close the browser
     await driver.quit();

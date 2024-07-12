@@ -1,6 +1,6 @@
 import axios from "axios";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
-import { createBatchPayout } from "./requestBodies/UseCase6.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
+import { createBatchPayout } from "../requestBodies/UseCase6.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));

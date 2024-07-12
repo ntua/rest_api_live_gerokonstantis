@@ -1,5 +1,5 @@
 import axios from "axios";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
 import {
   captureAuthorizedPaymentReqBody,
   createOrderReqBody,
@@ -8,8 +8,8 @@ import {
   simulateWebhookEvent,
   triggerSampleEventReqBody,
   updateWebhookReqBody,
-} from "./requestBodies/UseCase7.js";
-import { approveOrder } from "./selenium/seleniumFunctions.js";
+} from "../requestBodies/UseCase7.js";
+import { approveOrder } from "../selenium/seleniumFunctions.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -149,8 +149,12 @@ export const useCase7Requests = async () => {
   await sleep(1000);
 
   // the buyer approves the order
-  await approveOrder(approveLink);
-  console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m");
+  (await approveOrder(approveLink))
+    ? console.log(`${requestCounter++}. Order approved`, "\x1b[32m✔\x1b[0m")
+    : console.log(
+        `${requestCounter++}. Failed to approve order`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
   await sleep(1000);
 
@@ -196,8 +200,9 @@ export const useCase7Requests = async () => {
   } catch (error) {
     printErrorInfo(error);
   }
-
-  await sleep(180000);
+  console.log("\x1b[36mWait for 4 minutes ... \x1b[0m");
+  // 4 minutes waiting time
+  await sleep(4 * 60 * 1000);
 
   // List webhook notifications with event_type=PAYMENT.CAPTURE.COMPLETED
   try {
@@ -222,6 +227,7 @@ export const useCase7Requests = async () => {
     event_id = res.data.events[0].id;
     printInfo(res);
   } catch (error) {
+    console.log(error);
     printErrorInfo(error);
   }
 
@@ -280,6 +286,7 @@ export const useCase7Requests = async () => {
     printErrorInfo(error);
   }
 
+  console.log("\x1b[36mWait for 3 minutes ... \x1b[0m");
   await sleep(180000);
 
   // // List webhook notifications with the previous event_type=CUSTOMER.DISPUTE.CREATED

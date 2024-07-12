@@ -1,5 +1,5 @@
 import axios from "axios";
-import { generateAccessTokenReqBody } from "./requestBodies/auth.js";
+import { generateAccessTokenReqBody } from "../requestBodies/auth.js";
 import {
   activateSubscription,
   cancelSubscription,
@@ -10,8 +10,8 @@ import {
   updatePlanReqBody,
   updatePricingReqBody,
   updateSubscriptionReqBody,
-} from "./requestBodies/UseCase5.js";
-import { approveSubscription } from "./selenium/seleniumFunctions.js";
+} from "../requestBodies/UseCase5.js";
+import { approveSubscription } from "../selenium/seleniumFunctions.js";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -222,8 +222,15 @@ export const useCase5Requests = async () => {
   }
 
   await sleep(1000);
-  await approveSubscription(approveLink);
-  console.log(`${requestCounter++}. Subscription approved`, "\x1b[32m✔\x1b[0m");
+  (await approveSubscription(approveLink))
+    ? console.log(
+        `${requestCounter++}. Subscription approved`,
+        "\x1b[32m✔\x1b[0m"
+      )
+    : console.log(
+        `${requestCounter++}. Failed to approve subscription`,
+        "\x1b[31m✕\x1b[0m"
+      );
 
   // Show subscription details
   try {
