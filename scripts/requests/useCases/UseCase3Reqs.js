@@ -399,37 +399,37 @@ export const useCase3Requests = async () => {
     printErrorInfo(error);
   }
 
-  console.log("\x1b[36mWait for 4 minutes ... \x1b[0m");
-  await sleep(4 * 60 * 1000);
-  // The seller provides evidence
-  try {
-    let body = provideEvidenceReqBody(trackingNumber);
-    let res = await axios.post(
-      `${baseURL}/v1/customer/disputes/${dispute_id}/appeal`,
-      body,
-      {
-        headers: {
-          ...body.getHeaders(),
-          Authorization: authHeader,
-        },
-      }
-    );
-    printInfo(res);
-  } catch (error) {
-    printErrorInfo(error);
-  }
-  console.log("\x1b[36mWait for 1 minute ... \x1b[0m");
-  await sleep(60000);
+  // console.log("\x1b[36mWait for 4 minutes ... \x1b[0m");
+  // await sleep(4 * 60 * 1000);
+  // // The seller provides evidence
+  // try {
+  //   let body = provideEvidenceReqBody(trackingNumber);
+  //   let res = await axios.post(
+  //     `${baseURL}/v1/customer/disputes/${dispute_id}/appeal`,
+  //     body,
+  //     {
+  //       headers: {
+  //         ...body.getHeaders(),
+  //         Authorization: authHeader,
+  //       },
+  //     }
+  //   );
+  //   printInfo(res);
+  // } catch (error) {
+  //   printErrorInfo(error);
+  // }
+  // console.log("\x1b[36mWait for 1 minute ... \x1b[0m");
+  // await sleep(60000);
 
-  // The PayPal agent settles the dispute in seller's favor
-  try {
-    let res = await axios.post(
-      `${baseURL}/v1/customer/disputes/${dispute_id}/adjudicate`,
-      settleDisputeSeller(),
-      headers
-    );
-    printInfo(res);
-  } catch (error) {
-    printErrorInfo(error);
-  }
+  // // The PayPal agent settles the dispute in seller's favor
+  // try {
+  //   let res = await axios.post(
+  //     `${baseURL}/v1/customer/disputes/${dispute_id}/adjudicate`,
+  //     settleDisputeSeller(),
+  //     headers
+  //   );
+  //   printInfo(res);
+  // } catch (error) {
+  //   printErrorInfo(error);
+  // }
 };
