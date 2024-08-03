@@ -33,7 +33,9 @@ function printErrorInfo(error) {
   );
 }
 
-const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com`;
+const currentUseCase = "7";
+
+const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com/${currentUseCase}`;
 
 var requestCounter = 1;
 
@@ -224,10 +226,15 @@ export const useCase7Requests = async () => {
       `${baseURL}/v1/notifications/webhooks-events?transaction_id=${capture_id}`,
       headers
     );
-    event_id = res.data.events[0].id;
+    if (!res.data.events[0].id)
+      console.log(
+        `${requestCounter++}. ${error.request.method} ${error.config.url} :`,
+        "Failed to find event ID",
+        "\x1b[31m✕\x1b[0m"
+      );
+    else event_id = res.data.events[0].id;
     printInfo(res);
   } catch (error) {
-    console.log(error);
     printErrorInfo(error);
   }
 

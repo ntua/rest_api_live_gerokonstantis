@@ -67,11 +67,12 @@ function constructSchema(obj) {
     return schema;
 }
 
-const saveRequest = async (ip, method, url, endpoint, headers, body, query, paramsArr, responseStatus, data) => {
+const saveRequest = async (ip, method, url, tag, endpoint, headers, body, query, paramsArr, responseStatus, data) => {
     const requestSchema = constructSchema(data);
     const request = new Request({ ip, method, url, endpoint, headers, body, query,
         params: paramsArr,
         response: { responseStatus, requestSchema },
+        tag,
     });
     return await request.save();
 };
@@ -83,7 +84,8 @@ exports.mim = async (req, res) => {
     let params = req.params[0];
     let paramsArr = params.split('/');
     let domain = req.params.domain;
-
+    let tag = req.params.tag;
+    
     try {
         domain = formatDomain(domain);
         const target = `${domain}/${params}${queryString ? `?${queryString}` : ''}`;
@@ -91,7 +93,7 @@ exports.mim = async (req, res) => {
         const { status: responseStatus, data } = response;
         if (files) files.map((file) => (body[file.fieldname] = file));
         const bodySchema = constructSchema(body);
-        await saveRequest(ip, method, domain, params, headers, bodySchema, query, paramsArr, responseStatus, data);
+        await saveRequest(ip, method, domain, tag, params, headers, bodySchema, query, paramsArr, responseStatus, data);
         return res.status(responseStatus).json(data);
     } catch (e) {
         console.log(e.message);

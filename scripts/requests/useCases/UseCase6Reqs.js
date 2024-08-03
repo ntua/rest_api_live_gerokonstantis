@@ -24,7 +24,9 @@ function printErrorInfo(error) {
   );
 }
 
-const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com`;
+const currentUseCase = "6";
+
+const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com/${currentUseCase}`;
 
 var requestCounter = 1;
 
@@ -108,7 +110,7 @@ export const useCase6Requests = async () => {
     printErrorInfo(error);
   }
 
-  await sleep(1000);
+  await sleep(3000);
 
   // Cancel unclaimed payout items (fot example payouts to users with no active PayPal account)
   try {

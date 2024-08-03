@@ -29,7 +29,9 @@ function printErrorInfo(error) {
   );
 }
 
-const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com`;
+const currentUseCase = "1c";
+
+const baseURL = `http://localhost:${process.env.MIM_PORT}/proxy/https_api-m_sandbox_paypal_com/${currentUseCase}`;
 
 var requestCounter = 1;
 

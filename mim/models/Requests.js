@@ -37,6 +37,10 @@ const requestSchema = new mongoose.Schema({
         type: Object,
         required: true,
     },
+    tag: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
