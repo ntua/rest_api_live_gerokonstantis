@@ -24,6 +24,7 @@ def parse_nested_obj(obj, flag, request_info, reqbody_values, resbody_values, pa
             attribute_info={}
             attribute_info['name'] = attribute
             attribute_info['path'] = '->'.join(path_list+[attribute])
+            attribute_info['type_of_param'] = "body"
             path_list=[]
             attribute_info['type'] = attribute_value['name']
             if 'format' in attribute_value:
@@ -45,7 +46,7 @@ def parse_nested_obj(obj, flag, request_info, reqbody_values, resbody_values, pa
 # using sets ensures that each tuple (fromKey, toKey, type) is unique for a specific pair of endpoints
 # IMPORTANT note : each response body is compared only to the request bodies of subsequent requests of the use case 
 #                  only these dependencies make sense
-def compute_dependency_graph(reqbody_values, resbody_values):
+def compute_dependency_graph(reqbody_values, resbody_values, get_method_flag):
     dependency_graph={}
     for value in resbody_values:
         if type(value)!=bool and value in reqbody_values:
@@ -63,10 +64,16 @@ def compute_dependency_graph(reqbody_values, resbody_values):
                     req_method = req_info['method']
                     full_req_endpoint = req_method+' '+req_endpoint
                     req_seq_number = req_info['seq_number']
-                    if full_req_endpoint!=full_res_endpoint and req_seq_number>res_seq_number:
-                        if (full_res_endpoint, full_req_endpoint) not in dependency_graph:
-                            dependency_graph[(full_res_endpoint, full_req_endpoint)]=set()
-                        dependency_graph[(full_res_endpoint, full_req_endpoint)].add((res_attribute_info['name'],req_attribute_info['name'],req_attribute_info['type']))
+                    sameFormat=True
+                    format="None"
+                    if 'format' in res_attribute_info and 'format' in req_attribute_info:
+                        sameFormat=res_attribute_info['format']==req_attribute_info['format']
+                        format=res_attribute_info['format']
+                    if full_req_endpoint!=full_res_endpoint and req_seq_number>res_seq_number and sameFormat and res_attribute_info['type']==req_attribute_info['type']:
+                        if get_method_flag==False or res_method=="GET":
+                            if (full_res_endpoint, full_req_endpoint) not in dependency_graph:
+                                dependency_graph[(full_res_endpoint, full_req_endpoint)]=set()
+                            dependency_graph[(full_res_endpoint, full_req_endpoint)].add((res_attribute_info['name'],req_attribute_info['name'],res_attribute_info['path'],req_attribute_info['path'], value, req_attribute_info['type'],res_attribute_info['type_of_param'],req_attribute_info['type_of_param'], str(format)))
     return dependency_graph
 
 
@@ -79,18 +86,16 @@ def transform_dependency_graph(dependency_graph):
             transformed_dependency_graph[endpoint_pair[0]]=[]
         dep_attributes=[]
         for tuple in dependency_graph[endpoint_pair]:
-            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "type": tuple[2]})
+            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "fromPath": tuple[2], "toPath": tuple[3], "value": tuple[4], "type": tuple[5], "fromParamType": tuple[6], "toParamType": tuple[7], "format": eval(tuple[8])})
         transformed_dependency_graph[endpoint_pair[0]].append({'dependent_endpoint_name': endpoint_pair[1], 'attributes':dep_attributes})
     return transformed_dependency_graph
 
 
 def produce_output(dependency_graph):
     dependency_graph=transform_dependency_graph(dependency_graph)
-
     output_dict={}
     metadata_dict={}
     endpoints = []
-
     edges = 0
     for endpoint in dependency_graph:
         edges = edges + len(dependency_graph[endpoint])
@@ -106,13 +111,10 @@ def produce_output(dependency_graph):
             dependencies.append(dep_dict)
         endpoint_dict["dependencies"]=dependencies
         endpoints.append(endpoint_dict)
-
     metadata_dict["nodes"]=len(dependency_graph)
     metadata_dict["edges"]=edges
-
     output_dict["info"]=metadata_dict
     output_dict["endpoints"]=endpoints
-
     output_file = open("./output_files/dependencies.json", "w")
     output_file.write(str(json.dumps(output_dict)))
     output_file.close()
