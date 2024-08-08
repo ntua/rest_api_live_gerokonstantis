@@ -80,12 +80,12 @@ for usecase in reqs_per_usecase:
         if 'body' in request:
             req_body = request['body']
             if is_nested_obj(req_body):
-                req_values=parse_nested_obj(req_body,'req',{'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i},req_values,res_values,[])['reqbody_values']
+                req_values=parse_nested_obj(req_body,'req',{'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i, 'usecase': usecase},req_values,res_values,[])['reqbody_values']
         if 'response' in request:
             res_body = request['response']
             res_body_schema = res_body['requestSchema']
             if is_nested_obj(res_body_schema):
-                res_values=parse_nested_obj(res_body_schema,'res',{'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i},req_values,res_values,[])['resbody_values']
+                res_values=parse_nested_obj(res_body_schema,'res',{'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i, 'usecase': usecase},req_values,res_values,[])['resbody_values']
         # we can also store information about query params values
         if 'query' in request and includeQueryParams:
             queryParams = request['query']
@@ -97,7 +97,7 @@ for usecase in reqs_per_usecase:
                 attribute_info['type'] = "string"
                 if queryParams[queryParam] not in req_values:
                     req_values[queryParams[queryParam]]=[]
-                req_values[queryParams[queryParam]].append({'request_info': {'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i}, 'attribute_info': attribute_info })
+                req_values[queryParams[queryParam]].append({'request_info': {'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': i, 'usecase': usecase}, 'attribute_info': attribute_info })
 
 # compute dependency graph and produce the output .json file
 produce_output(compute_and_analyse_dependency_graph(req_values,res_values,get_method,include_boolean))
