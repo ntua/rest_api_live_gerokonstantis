@@ -147,16 +147,16 @@ def produce_output(input):
         endpoints.append(endpoint_dict)
     for endpoint in set_of_endpoints_without_dependencies:
         endpoints.append({"name": endpoint, "method": endpoint.split(" ")[0], "dependencies":[]})
-    metadata_dict["nodes"]=len(extra_info['full_set_of_endpoints']) # all endpoints (even if they do not participate in a dependency)
-    metadata_dict["interdependencyNodes"]=len(extra_info['dependency_endpoints']) # endpoints participating in a dependency
-    metadata_dict["dependentOnlyNodes"]=len(extra_info['dependent_nodes']-extra_info['derive_nodes']) # endpoints which are dependent to others, but there is no endpoint dependent to them
-    metadata_dict["derivingOnlyNodes"]=len(extra_info['derive_nodes']-extra_info['dependent_nodes']) # endpoints on which other endpoints depend but which do not depend on any
-    metadata_dict["bothDependentDerivingNodes"]=len(extra_info['derive_nodes'].intersection(extra_info['dependent_nodes']))
-    metadata_dict["edges"]=edges # total dependencies between endpoints
-    metadata_dict["dependenciesPerAttribute"]=extra_info['total_attribute_dependencies']
-    metadata_dict["bodyDependencies"]=extra_info['body_dependencies']
-    metadata_dict["queryDependencies"]=extra_info['query_dependencies']
-    metadata_dict["pathDependencies"]=0
+    metadata_dict["nodes"]=str(len(extra_info['full_set_of_endpoints']) )# all endpoints (even if they do not participate in a dependency)
+    metadata_dict["interdependencyNodes"]=str(len(extra_info['dependency_endpoints'])) # endpoints participating in a dependency
+    metadata_dict["dependentOnlyNodes"]=str(len(extra_info['dependent_nodes']-extra_info['derive_nodes']))# endpoints which are dependent to others, but there is no endpoint dependent to them
+    metadata_dict["derivingOnlyNodes"]=str(len(extra_info['derive_nodes']-extra_info['dependent_nodes'])) # endpoints on which other endpoints depend but which do not depend on any
+    metadata_dict["bothDependentDerivingNodes"]=str(len(extra_info['derive_nodes'].intersection(extra_info['dependent_nodes'])))
+    metadata_dict["edges"]=str(edges) # total dependencies between endpoints
+    metadata_dict["dependenciesPerAttribute"]=str(extra_info['total_attribute_dependencies'])
+    metadata_dict["bodyDependencies"]=str(extra_info['body_dependencies'])
+    metadata_dict["queryDependencies"]=str(extra_info['query_dependencies'])
+    metadata_dict["pathDependencies"]="0"
     output_dict["info"]=metadata_dict
     output_dict["endpoints"]=endpoints
     output_file = open("./output_files/dependencies.json", "w")
