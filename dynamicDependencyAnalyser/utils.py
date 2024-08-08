@@ -100,11 +100,11 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
     for value in resbody_values:
         for res in resbody_values[value]:
             res_info = res['request_info']
-            full_set_of_endpoints.add(res_info['endpoint'])
+            full_set_of_endpoints.add(res_info['method']+' '+res_info['endpoint'])
     for value in reqbody_values:
         for req in reqbody_values[value]:
             req_info = req['request_info']
-            full_set_of_endpoints.add(req_info['endpoint'])
+            full_set_of_endpoints.add(req_info['method']+' '+req_info['endpoint'])
     return {'dependency_graph': dependency_graph, 'extra_info': {'full_set_of_endpoints': full_set_of_endpoints, 'dependency_endpoints':dependency_endpoints, 'dependent_nodes': dependent_nodes, 'derive_nodes': derive_nodes, 'total_attribute_dependencies':total_attribute_dependencies, 'body_dependencies': body_dependencies, 'query_dependencies': query_dependencies, 'edges': len(dependency_graph) }}
 
 
