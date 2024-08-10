@@ -69,9 +69,20 @@ while True:
         include_boolean = False
         break
 
+# ask user whether to be strict with datatypes
+# (for example, can a dependency include the values 17 (int) and "17" (string) ?)
+while True:
+    user_input = input('Do you want to include dependencies that derive from the same values ​​but different data types ? (yes / no) ')
+    if user_input == "yes" or user_input == "y" or user_input == "":
+        strict_types= False
+        break
+    elif user_input == "no" or user_input == "n":
+        strict_types = True
+        break
+
 
 # read list of requests stored by mim (i.e. json file exported from MongoDB)
-input_list = eval(open(input_path, 'r').read(), {'true':True, 'false':False})
+input_list = eval(open(input_path, 'r').read().replace('"true"', '"True"'), {'true':True, 'false':False})
 
 # add increasing sequence numbers to the requests of each use case
 # so that we look for dependencies between req1 and req2, where req2 follows req1 in the use case
@@ -124,6 +135,7 @@ for request in input_list:
                 req_values[param]=[]
             req_values[param].append({'request_info': {'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': request['seq_number'], 'usecase': request['tag']}, 'attribute_info': attribute_info })
 
+
 # compute dependency graph and produce the output .json file
-produce_output(compute_and_analyse_dependency_graph(req_values,res_values,get_method,include_boolean))
+produce_output(compute_and_analyse_dependency_graph(req_values,res_values,get_method,include_boolean, strict_types))
 

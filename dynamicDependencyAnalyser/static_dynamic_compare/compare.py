@@ -23,8 +23,8 @@ def search_for_same_endpoint(dict, endpoint):
 
 
 
-dynamic_dependencies = eval(open('./dependencies/withQueryOnlyGetWithPath/dynamic.json', 'r').read(), {'true':True, 'false':False})
-static_dependencies = eval(open('./dependencies/withQueryOnlyGetWithPath/static.json', 'r').read(), {'true':True, 'false':False})
+dynamic_dependencies = eval(open('./dependencies/withQueryOnlyGetWithPathStrictTypes/dynamic.json', 'r').read(), {'true':True, 'false':False})
+static_dependencies = eval(open('./dependencies/withQueryOnlyGetWithPathStrictTypes/static.json', 'r').read(), {'true':True, 'false':False})
 
 dynamic_dependencies_endpoints = dynamic_dependencies['endpoints']
 static_dependencies_endpoints = static_dependencies['endpoints']
@@ -54,7 +54,7 @@ for endpoint in dynamic_dependencies_per_endpoint:
         compare_per_endpoint[endpoint]={'static_endpoint': static_endpoint,'numberOfDynamicDeps': len(dynamic_dependencies_set), 'numberOfStaticDeps': len(static_dependencies_set), 'intersectionOfDepsLength': len(dynamic_dependencies_set.intersection(static_dependencies_set)), 'dynamicAndNotStatic': len(dynamic_dependencies_set-static_dependencies_set), 'staticAndNotDynamic': len(static_dependencies_set-dynamic_dependencies_set)}
 
 # print(compare_per_endpoint)
-output_file = open("./compare_results/compare_only_get_with_path.json", "w")
+output_file = open("./compare_results/compare_withQueryOnlyGetWithPathStrictTypes.json", "w")
 output_file.write(str(json.dumps(compare_per_endpoint)))
 output_file.close()
 # print(sorted(dynamic_dependencies_per_endpoint.keys()), '\n\n\n',sorted(static_dependencies_per_endpoint.keys()))

@@ -7,6 +7,17 @@ def is_nested_obj(obj):
             return True
     return False
 
+# searches for an element in a dict that matches a given value regardless of their data types
+def find_value_in_dict(dict, value):
+    # search for the same value
+    if value in dict:
+        return value
+    # search for similar values (with different data types)
+    for item in dict:
+        if(str(value).lower()==str(item).lower()):
+            return item
+    return False
+
 
 
 # parse obj (i.e. request or response body) and store information about the 
@@ -29,13 +40,13 @@ def parse_nested_obj(obj, flag, request_info, reqbody_values, resbody_values, pa
             if 'format' in attribute_value:
                 attribute_info['format'] = attribute_value['format']
             if flag=='req':
-                if attribute_value['value'] not in reqbody_values:
-                    reqbody_values[attribute_value['value']]=[]
-                reqbody_values[attribute_value['value']].append({'request_info': request_info, 'attribute_info': attribute_info})
+                if ((attribute_value['value'])) not in reqbody_values:
+                    reqbody_values[((attribute_value['value']))]=[]
+                reqbody_values[((attribute_value['value']))].append({'request_info': request_info, 'attribute_info': attribute_info})
             elif flag=='res':
-                if attribute_value['value'] not in resbody_values:
-                    resbody_values[attribute_value['value']]=[]
-                resbody_values[attribute_value['value']].append({'request_info': request_info, 'attribute_info': attribute_info })
+                if ((attribute_value['value'])) not in resbody_values:
+                    resbody_values[((attribute_value['value']))]=[]
+                resbody_values[((attribute_value['value']))].append({'request_info': request_info, 'attribute_info': attribute_info })
     path_list=[]
     return {'reqbody_values': reqbody_values, 'resbody_values': resbody_values}
     
@@ -46,7 +57,7 @@ def parse_nested_obj(obj, flag, request_info, reqbody_values, resbody_values, pa
 # using sets ensures that each tuple (fromKey, toKey, type) is unique for a specific pair of endpoints
 # IMPORTANT note : each response body is compared only to the request bodies of subsequent requests of the use case 
 #                  only these dependencies make sense
-def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_method_flag, include_boolean_flag):
+def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_method_flag, include_boolean_flag, strict_types):
     dependency_graph={}
     full_set_of_endpoints=set() # all endpoints (even if they do not participate in a dependency)
     dependency_endpoints = set() # endpoints participating in a dependency
@@ -60,7 +71,16 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
         flag = False
         if(not include_boolean_flag):
             flag = type(value)==bool
-        if not flag and value in reqbody_values:
+        if strict_types:
+            req_value = value
+            matching_condition = value in reqbody_values
+            strict_matching=True
+        elif not strict_types:
+            req_value = find_value_in_dict(reqbody_values, value)
+            matching_condition=req_value!=False
+            strict_matching = req_value==value
+
+        if not flag and matching_condition :
             for res in resbody_values[value]:
                 res_info = res['request_info']
                 res_attribute_info = res['attribute_info']
@@ -70,7 +90,7 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
                 full_res_endpoint = res_method+' '+res_endpoint
                 res_seq_number = res_info['seq_number']
                 # full_set_of_endpoints.add(full_res_endpoint)
-                for req in reqbody_values[value]:
+                for req in reqbody_values[req_value]:
                     req_info = req['request_info']
                     req_attribute_info = req['attribute_info']
                     req_endpoint = req_info['endpoint']
@@ -82,13 +102,18 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
                     sameFormat=True
                     format="{}"
                     if 'format' in res_attribute_info and 'format' in req_attribute_info:
-                        sameFormat=res_attribute_info['format']==req_attribute_info['format']
+                        sameFormat=True
+                        if strict_types:
+                            sameFormat=res_attribute_info['format']==req_attribute_info['format']
                         format=res_attribute_info['format']
-                    if full_req_endpoint!=full_res_endpoint and req_seq_number>res_seq_number and req_usecase==res_usecase and sameFormat and res_attribute_info['type']==req_attribute_info['type']:
-                        if get_method_flag==False or res_method=="GET":
+                    sameTypes = True
+                    if strict_types:
+                        sameTypes=res_attribute_info['type']==req_attribute_info['type']
+                    if full_req_endpoint!=full_res_endpoint and req_seq_number>res_seq_number and req_usecase==res_usecase and sameFormat and sameTypes:
+                        if get_method_flag==False or (get_method_flag==True and res_method=="GET"):
                             if (full_res_endpoint, full_req_endpoint) not in dependency_graph:
                                 dependency_graph[(full_res_endpoint, full_req_endpoint)]=set()
-                            dependency_graph[(full_res_endpoint, full_req_endpoint)].add((res_attribute_info['name'],req_attribute_info['name'],res_attribute_info['path'],req_attribute_info['path'], value, req_attribute_info['type'],res_attribute_info['type_of_param'],req_attribute_info['type_of_param'], str(format), req_usecase, res_seq_number, req_seq_number))
+                            dependency_graph[(full_res_endpoint, full_req_endpoint)].add((res_attribute_info['name'],req_attribute_info['name'],res_attribute_info['path'],req_attribute_info['path'], value, req_attribute_info['type'],res_attribute_info['type_of_param'],req_attribute_info['type_of_param'], str(format), req_usecase, res_seq_number, req_seq_number, req_value,strict_matching))
                             if(req_attribute_info['type_of_param']=='body'):
                                 body_dependencies+=1
                             if(req_attribute_info['type_of_param']=='query'):
@@ -120,7 +145,7 @@ def transform_dependency_graph(dependency_graph):
             transformed_dependency_graph[endpoint_pair[0]]=[]
         dep_attributes=[]
         for tuple in dependency_graph[endpoint_pair]:
-            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "fromPath": tuple[2], "toPath": tuple[3], "value": tuple[4], "type": tuple[5], "fromParamType": tuple[6], "toParamType": tuple[7], "format": eval(tuple[8]), "use_case": tuple[9], "fromSeqNumber": tuple[10], "toSeqNumber": tuple[11]})
+            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "fromPath": tuple[2], "toPath": tuple[3], "fromValue": tuple[4], "toValue": tuple[12], "strict_matching": tuple[13],"type": tuple[5], "fromParamType": tuple[6], "toParamType": tuple[7], "format": eval(tuple[8]), "use_case": tuple[9], "fromSeqNumber": tuple[10], "toSeqNumber": tuple[11]})
         transformed_dependency_graph[endpoint_pair[0]].append({'dependent_endpoint_name': endpoint_pair[1], 'attributes':dep_attributes})
     return transformed_dependency_graph
 

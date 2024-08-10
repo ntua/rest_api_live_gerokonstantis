@@ -1,0 +1,16 @@
+{
+  "name": "dummy-api-script",
+  "version": "1.0.0",
+  "description": "script for making requests to dummy api",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Dimitris Gerokonstantis",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3"
+  }
+}

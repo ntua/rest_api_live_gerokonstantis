@@ -1,4 +1,12 @@
 {
+  "GET v1/catalogs/products/1722691260627": {
+    "static_endpoint": "GET v1/catalogs/products/:product_id",
+    "numberOfDynamicDeps": 1,
+    "numberOfStaticDeps": 2,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 1,
+    "staticAndNotDynamic": 2
+  },
   "GET v1/catalogs/products/1722691340466": {
     "static_endpoint": "GET v1/catalogs/products/:product_id",
     "numberOfDynamicDeps": 1,
@@ -9,10 +17,10 @@
   },
   "GET v2/checkout/orders/0SV42290DB743762L": {
     "static_endpoint": "GET v2/checkout/orders/:order_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 2,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 18
   },
   "GET v2/payments/authorizations/77E24576AV294530B": {
@@ -25,58 +33,58 @@
   },
   "GET v2/invoicing/invoices/INV2-J43G-QASS-VQZX-HRL2": {
     "static_endpoint": "GET v2/invoicing/invoices/:invoice_id",
-    "numberOfDynamicDeps": 4,
+    "numberOfDynamicDeps": 6,
     "numberOfStaticDeps": 26,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 4,
+    "dynamicAndNotStatic": 6,
     "staticAndNotDynamic": 26
   },
   "GET v2/invoicing/invoices/INV2-Y4WP-5UZ3-VSUH-7MUU": {
     "static_endpoint": "GET v2/invoicing/invoices/:invoice_id",
-    "numberOfDynamicDeps": 4,
+    "numberOfDynamicDeps": 7,
     "numberOfStaticDeps": 26,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 4,
+    "dynamicAndNotStatic": 7,
     "staticAndNotDynamic": 26
   },
   "GET v2/checkout/orders/24691661YV107373E": {
     "static_endpoint": "GET v2/checkout/orders/:order_id",
-    "numberOfDynamicDeps": 2,
+    "numberOfDynamicDeps": 3,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 2,
+    "dynamicAndNotStatic": 3,
     "staticAndNotDynamic": 18
   },
   "GET v1/customer/disputes": {
     "static_endpoint": "GET v1/customer/disputes",
-    "numberOfDynamicDeps": 2,
+    "numberOfDynamicDeps": 14,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 2,
+    "dynamicAndNotStatic": 14,
     "staticAndNotDynamic": 18
   },
   "GET v1/customer/disputes/PP-R-OWG-10097422": {
     "static_endpoint": "GET v1/customer/disputes/:dispute_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 2,
     "numberOfStaticDeps": 22,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 22
   },
   "GET v2/checkout/orders/74N02269LX050074A": {
     "static_endpoint": "GET v2/checkout/orders/:order_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 3,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 3,
     "staticAndNotDynamic": 18
   },
   "GET v1/billing/plans/P-4RM69877XC879234KM2XE7WQ": {
     "static_endpoint": "GET v1/billing/plans/:billing_plan_id",
-    "numberOfDynamicDeps": 4,
+    "numberOfDynamicDeps": 5,
     "numberOfStaticDeps": 19,
     "intersectionOfDepsLength": 1,
-    "dynamicAndNotStatic": 3,
+    "dynamicAndNotStatic": 4,
     "staticAndNotDynamic": 18
   },
   "GET v1/billing/plans": {
@@ -89,34 +97,34 @@
   },
   "GET v1/billing/subscriptions/I-PSA60M3YA1PU": {
     "static_endpoint": "GET v1/billing/subscriptions/:subscription_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 5,
     "numberOfStaticDeps": 12,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 5,
     "staticAndNotDynamic": 12
   },
   "GET v2/invoicing/templates": {
     "static_endpoint": "GET v2/invoicing/templates",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 3,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 3,
     "staticAndNotDynamic": 18
   },
   "GET v2/invoicing/templates/TEMP-4PM651199M126314W": {
     "static_endpoint": "GET v2/invoicing/templates/:template_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 2,
     "numberOfStaticDeps": 27,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 27
   },
   "GET v2/checkout/orders/28066893UX357631F": {
     "static_endpoint": "GET v2/checkout/orders/:order_id",
-    "numberOfDynamicDeps": 2,
+    "numberOfDynamicDeps": 3,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 2,
+    "dynamicAndNotStatic": 3,
     "staticAndNotDynamic": 18
   },
   "GET v2/payments/authorizations/86246157AW834214T": {
@@ -137,11 +145,19 @@
   },
   "GET v1/customer/disputes/PP-R-ZYC-10097424": {
     "static_endpoint": "GET v1/customer/disputes/:dispute_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 7,
     "numberOfStaticDeps": 22,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 7,
     "staticAndNotDynamic": 22
+  },
+  "GET v2/checkout/orders/6U979679CB417882E": {
+    "static_endpoint": "GET v2/checkout/orders/:order_id",
+    "numberOfDynamicDeps": 1,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 1,
+    "staticAndNotDynamic": 18
   },
   "GET v2/payments/captures/9F694541N2045151V": {
     "static_endpoint": "GET v2/payments/captures/:capture_id",
@@ -153,10 +169,10 @@
   },
   "GET v1/customer/disputes/PP-R-YBB-10097423": {
     "static_endpoint": "GET v1/customer/disputes/:dispute_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 2,
     "numberOfStaticDeps": 22,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 1,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 22
   },
   "GET v1/catalogs/products/1722699734903": {
@@ -169,34 +185,42 @@
   },
   "GET v1/notifications/webhooks-events": {
     "static_endpoint": "GET v1/notifications/webhooks-events",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 3,
     "numberOfStaticDeps": 25,
     "intersectionOfDepsLength": 1,
-    "dynamicAndNotStatic": 0,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 24
   },
   "GET v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936": {
     "static_endpoint": "GET v1/notifications/webhooks-events/:event_id",
-    "numberOfDynamicDeps": 1,
+    "numberOfDynamicDeps": 2,
     "numberOfStaticDeps": 19,
     "intersectionOfDepsLength": 1,
-    "dynamicAndNotStatic": 0,
+    "dynamicAndNotStatic": 1,
+    "staticAndNotDynamic": 18
+  },
+  "GET v1/payments/payouts/N2N8PL5VLS8C6": {
+    "static_endpoint": "GET v1/payments/payouts/:payout_batch_id",
+    "numberOfDynamicDeps": 2,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 18
   },
   "GET v1/notifications/webhooks": {
     "static_endpoint": "GET v1/notifications/webhooks",
-    "numberOfDynamicDeps": 2,
+    "numberOfDynamicDeps": 6,
     "numberOfStaticDeps": 3,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 2,
+    "dynamicAndNotStatic": 6,
     "staticAndNotDynamic": 3
   },
   "GET v1/notifications/webhooks/4FC365949M405835A": {
     "static_endpoint": "GET v1/notifications/webhooks/:webhook_id",
-    "numberOfDynamicDeps": 2,
+    "numberOfDynamicDeps": 5,
     "numberOfStaticDeps": 2,
     "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 2,
+    "dynamicAndNotStatic": 5,
     "staticAndNotDynamic": 2
   },
   "GET v1/notifications/webhooks-event-types": {
@@ -206,6 +230,38 @@
     "intersectionOfDepsLength": 1,
     "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 1
+  },
+  "GET v1/notifications/webhooks/4FC365949M405835A/event-types": {
+    "static_endpoint": "GET v1/notifications/webhooks/:webhook_id/event-types",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 2,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 2
+  },
+  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
+    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 18
+  },
+  "GET v2/payments/refunds/9HX84771W5350250S": {
+    "static_endpoint": "GET v2/payments/refunds/:refund_id",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 18
+  },
+  "GET v1/catalogs/products": {
+    "static_endpoint": "GET v1/catalogs/products",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 3,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 3
   },
   "GET v1/payments/payouts-item/7EFGUGCZXCKHA": {
     "static_endpoint": "GET v1/payments/payouts-item/:payout_item_id",
@@ -222,61 +278,5 @@
     "intersectionOfDepsLength": 0,
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 18
-  },
-  "GET v2/payments/refunds/9HX84771W5350250S": {
-    "static_endpoint": "GET v2/payments/refunds/:refund_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v1/payments/payouts/N2N8PL5VLS8C6": {
-    "static_endpoint": "GET v1/payments/payouts/:payout_batch_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v2/checkout/orders/6U979679CB417882E": {
-    "static_endpoint": "GET v2/checkout/orders/:order_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
-    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v1/notifications/webhooks/4FC365949M405835A/event-types": {
-    "static_endpoint": "GET v1/notifications/webhooks/:webhook_id/event-types",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 2,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 2
-  },
-  "GET v1/catalogs/products/1722691260627": {
-    "static_endpoint": "GET v1/catalogs/products/:product_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 2,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 2
-  },
-  "GET v1/catalogs/products": {
-    "static_endpoint": "GET v1/catalogs/products",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 3,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 3
   }
 }
