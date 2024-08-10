@@ -34,6 +34,19 @@ while True:
         includeQueryParams = False
         break
 
+# ask user whether to take path params into consideration
+# (!) : each part of the path is considered as a path param, because it 
+# is not possible to extract the path params from the path
+# this can lead to misleading results
+while True:
+    user_input = input('Take path values into consideration? [this may produce misleading results] (yes / no) ')
+    if user_input == "yes" or user_input == "y" or user_input == "":
+        include_path = True
+        break
+    elif user_input == "no" or user_input == "n":
+        include_path = False
+        break
+
 # ask user whether to check only for dependencies starting from GET requests
 # (these dependencies are likely to make more sense) 
 while True:
@@ -93,12 +106,23 @@ for request in input_list:
         for queryParam in queryParams:
             attribute_info={}
             attribute_info['name'] = queryParam
-            attribute_info['path'] = queryParam
+            attribute_info['path'] = 'url->'+queryParam
             attribute_info['type_of_param'] = "query"
             attribute_info['type'] = "string"
             if queryParams[queryParam] not in req_values:
                 req_values[queryParams[queryParam]]=[]
             req_values[queryParams[queryParam]].append({'request_info': {'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': request['seq_number'], 'usecase': request['tag']}, 'attribute_info': attribute_info })
+    if include_path:
+        path = request['params']
+        for param in path:
+            attribute_info={}
+            attribute_info['name'] = param
+            attribute_info['path'] = 'url->'+param
+            attribute_info['type_of_param'] = "path"
+            attribute_info['type'] = "string"
+            if param not in req_values:
+                req_values[param]=[]
+            req_values[param].append({'request_info': {'endpoint':request['endpoint'], 'method': request['method'], 'seq_number': request['seq_number'], 'usecase': request['tag']}, 'attribute_info': attribute_info })
 
 # compute dependency graph and produce the output .json file
 produce_output(compute_and_analyse_dependency_graph(req_values,res_values,get_method,include_boolean))

@@ -54,6 +54,7 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
     derive_nodes = set() # nodes having dependencies (i.e. some other endpoints are dependent to these nodes)
     body_dependencies = 0
     query_dependencies = 0 
+    path_dependencies = 0
     total_attribute_dependencies = 0
     for value in resbody_values:
         flag = False
@@ -88,10 +89,12 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
                             if (full_res_endpoint, full_req_endpoint) not in dependency_graph:
                                 dependency_graph[(full_res_endpoint, full_req_endpoint)]=set()
                             dependency_graph[(full_res_endpoint, full_req_endpoint)].add((res_attribute_info['name'],req_attribute_info['name'],res_attribute_info['path'],req_attribute_info['path'], value, req_attribute_info['type'],res_attribute_info['type_of_param'],req_attribute_info['type_of_param'], str(format), req_usecase, res_seq_number, req_seq_number))
-                            if(res_attribute_info['type_of_param']=='body' and req_attribute_info['type_of_param']=='body'):
+                            if(req_attribute_info['type_of_param']=='body'):
                                 body_dependencies+=1
-                            elif(res_attribute_info['type_of_param']=='query' or req_attribute_info['type_of_param']=='query'):
+                            if(req_attribute_info['type_of_param']=='query'):
                                 query_dependencies+=1
+                            if(req_attribute_info['type_of_param']=='path'):
+                                path_dependencies+=1
                             dependency_endpoints.add(full_res_endpoint)
                             dependency_endpoints.add(full_req_endpoint)
                             dependent_nodes.add(full_req_endpoint)
@@ -105,7 +108,7 @@ def compute_and_analyse_dependency_graph(reqbody_values, resbody_values, get_met
         for req in reqbody_values[value]:
             req_info = req['request_info']
             full_set_of_endpoints.add(req_info['method']+' '+req_info['endpoint'])
-    return {'dependency_graph': dependency_graph, 'extra_info': {'full_set_of_endpoints': full_set_of_endpoints, 'dependency_endpoints':dependency_endpoints, 'dependent_nodes': dependent_nodes, 'derive_nodes': derive_nodes, 'total_attribute_dependencies':total_attribute_dependencies, 'body_dependencies': body_dependencies, 'query_dependencies': query_dependencies, 'edges': len(dependency_graph), 'get_method_flag':get_method_flag }}
+    return {'dependency_graph': dependency_graph, 'extra_info': {'full_set_of_endpoints': full_set_of_endpoints, 'dependency_endpoints':dependency_endpoints, 'dependent_nodes': dependent_nodes, 'derive_nodes': derive_nodes, 'total_attribute_dependencies':total_attribute_dependencies, 'body_dependencies': body_dependencies, 'query_dependencies': query_dependencies, 'path_dependencies': path_dependencies,'edges': len(dependency_graph), 'get_method_flag':get_method_flag }}
 
 
 # transformed_dependency_graph[<endpoint E1>]=<list of dictionaries each one of the contains the dependent endpoint E2 and a list of attributes related to this dependency>
@@ -157,7 +160,7 @@ def produce_output(input):
     metadata_dict["dependenciesPerAttribute"]=str(extra_info['total_attribute_dependencies'])
     metadata_dict["bodyDependencies"]=str(extra_info['body_dependencies'])
     metadata_dict["queryDependencies"]=str(extra_info['query_dependencies'])
-    metadata_dict["pathDependencies"]="0"
+    metadata_dict["pathDependencies"]=str(extra_info['path_dependencies'])
     output_dict["info"]=metadata_dict
     output_dict["endpoints"]=endpoints
     output_file = open("./output_files/dependencies.json", "w")
