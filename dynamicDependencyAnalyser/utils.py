@@ -179,7 +179,7 @@ def produce_output(input):
     metadata_dict["nodes"]=str(len(extra_info['full_set_of_endpoints']) )# all endpoints (even if they do not participate in a dependency)
     metadata_dict["interdependencyNodes"]=str(len(extra_info['dependency_endpoints'])) # endpoints participating in a dependency
     metadata_dict["dependentOnlyNodes"]=str(len(extra_info['dependent_nodes']-extra_info['derive_nodes']))# endpoints which are dependent to others, but there is no endpoint dependent to them
-    metadata_dict["derivingOnlyNodes"]=str(len(extra_info['derive_nodes']-extra_info['dependent_nodes'])) # endpoints on which other endpoints depend but which do not depend on any
+    metadata_dict["derivingOnlyDependencyNodes"]=str(len(extra_info['derive_nodes']-extra_info['dependent_nodes'])) # endpoints on which other endpoints depend but which do not depend on any
     metadata_dict["bothDependentDerivingNodes"]=str(len(extra_info['derive_nodes'].intersection(extra_info['dependent_nodes'])))
     metadata_dict["edges"]=str(extra_info['edges']) # total dependencies between endpoints
     metadata_dict["dependenciesPerAttribute"]=str(extra_info['total_attribute_dependencies'])

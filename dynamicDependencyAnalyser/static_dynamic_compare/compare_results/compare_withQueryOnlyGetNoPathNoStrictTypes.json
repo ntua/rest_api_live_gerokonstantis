@@ -207,13 +207,13 @@
     "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 1
   },
-  "GET v1/catalogs/products/1722691260627": {
-    "static_endpoint": "GET v1/catalogs/products/:product_id",
+  "GET v1/payments/payouts/N2N8PL5VLS8C6": {
+    "static_endpoint": "GET v1/payments/payouts/:payout_batch_id",
     "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 2,
+    "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
     "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 2
+    "staticAndNotDynamic": 18
   },
   "GET v2/payments/authorizations/3DT431301F1137727": {
     "static_endpoint": "GET v2/payments/authorizations/:authorization_id",
@@ -223,16 +223,16 @@
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 18
   },
-  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
-    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
+  "GET v1/notifications/webhooks/4FC365949M405835A/event-types": {
+    "static_endpoint": "GET v1/notifications/webhooks/:webhook_id/event-types",
     "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
+    "numberOfStaticDeps": 2,
     "intersectionOfDepsLength": 0,
     "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
+    "staticAndNotDynamic": 2
   },
-  "GET v1/payments/payouts-item/7EFGUGCZXCKHA": {
-    "static_endpoint": "GET v1/payments/payouts-item/:payout_item_id",
+  "GET v2/payments/refunds/9HX84771W5350250S": {
+    "static_endpoint": "GET v2/payments/refunds/:refund_id",
     "numberOfDynamicDeps": 0,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
@@ -255,28 +255,28 @@
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 18
   },
-  "GET v1/payments/payouts/N2N8PL5VLS8C6": {
-    "static_endpoint": "GET v1/payments/payouts/:payout_batch_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v2/payments/refunds/9HX84771W5350250S": {
-    "static_endpoint": "GET v2/payments/refunds/:refund_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v1/notifications/webhooks/4FC365949M405835A/event-types": {
-    "static_endpoint": "GET v1/notifications/webhooks/:webhook_id/event-types",
+  "GET v1/catalogs/products/1722691260627": {
+    "static_endpoint": "GET v1/catalogs/products/:product_id",
     "numberOfDynamicDeps": 0,
     "numberOfStaticDeps": 2,
     "intersectionOfDepsLength": 0,
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 2
+  },
+  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
+    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 18
+  },
+  "GET v1/payments/payouts-item/7EFGUGCZXCKHA": {
+    "static_endpoint": "GET v1/payments/payouts-item/:payout_item_id",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 18
   }
 }

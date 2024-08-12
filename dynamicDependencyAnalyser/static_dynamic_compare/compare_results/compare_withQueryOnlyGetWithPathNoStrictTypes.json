@@ -231,6 +231,14 @@
     "dynamicAndNotStatic": 2,
     "staticAndNotDynamic": 1
   },
+  "GET v1/payments/payouts-item/7EFGUGCZXCKHA": {
+    "static_endpoint": "GET v1/payments/payouts-item/:payout_item_id",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 18,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 18
+  },
   "GET v1/notifications/webhooks/4FC365949M405835A/event-types": {
     "static_endpoint": "GET v1/notifications/webhooks/:webhook_id/event-types",
     "numberOfDynamicDeps": 0,
@@ -239,8 +247,16 @@
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 2
   },
-  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
-    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
+  "GET v1/catalogs/products": {
+    "static_endpoint": "GET v1/catalogs/products",
+    "numberOfDynamicDeps": 0,
+    "numberOfStaticDeps": 3,
+    "intersectionOfDepsLength": 0,
+    "dynamicAndNotStatic": 0,
+    "staticAndNotDynamic": 3
+  },
+  "GET v2/payments/authorizations/3DT431301F1137727": {
+    "static_endpoint": "GET v2/payments/authorizations/:authorization_id",
     "numberOfDynamicDeps": 0,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
@@ -255,24 +271,8 @@
     "dynamicAndNotStatic": 0,
     "staticAndNotDynamic": 18
   },
-  "GET v1/catalogs/products": {
-    "static_endpoint": "GET v1/catalogs/products",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 3,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 3
-  },
-  "GET v1/payments/payouts-item/7EFGUGCZXCKHA": {
-    "static_endpoint": "GET v1/payments/payouts-item/:payout_item_id",
-    "numberOfDynamicDeps": 0,
-    "numberOfStaticDeps": 18,
-    "intersectionOfDepsLength": 0,
-    "dynamicAndNotStatic": 0,
-    "staticAndNotDynamic": 18
-  },
-  "GET v2/payments/authorizations/3DT431301F1137727": {
-    "static_endpoint": "GET v2/payments/authorizations/:authorization_id",
+  "GET v1/billing/subscriptions/I-PSA60M3YA1PU/transactions": {
+    "static_endpoint": "GET v1/billing/subscriptions/:subscription_id/transactions",
     "numberOfDynamicDeps": 0,
     "numberOfStaticDeps": 18,
     "intersectionOfDepsLength": 0,
