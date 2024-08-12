@@ -66,7 +66,7 @@ for config in configurations:
     output_file.close()
     # print(sorted(dynamic_dependencies_per_endpoint.keys()), '\n\n\n',sorted(static_dependencies_per_endpoint.keys()))
 
-    # comparative plots
+    # comparison plots
     bar_width = 0.5
     figure, ax = plt.subplots(figsize=(15, 8), tight_layout=True) 
 
