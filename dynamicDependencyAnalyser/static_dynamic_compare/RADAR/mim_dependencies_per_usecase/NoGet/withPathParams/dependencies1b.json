@@ -1,0 +1,236 @@
+{
+  "info": {
+    "nodes": "6",
+    "interdependencyNodes": "5",
+    "dependentOnlyNodes": "1",
+    "derivingOnlyDependencyNodes": "1",
+    "bothDependentDerivingNodes": "3",
+    "edges": "6",
+    "dependenciesPerAttribute": "9",
+    "bodyDependencies": "0",
+    "queryDependencies": "0",
+    "pathDependencies": "9"
+  },
+  "endpoints": [
+    {
+      "name": "POST v2/checkout/orders",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v2/checkout/orders/6U979679CB417882E",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "6U979679CB417882E",
+              "fromPath": "body->id",
+              "toPath": "url->6U979679CB417882E",
+              "fromValue": "6U979679CB417882E",
+              "toValue": "6U979679CB417882E",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 2
+            }
+          ]
+        },
+        {
+          "name": "POST v2/checkout/orders/6U979679CB417882E/authorize",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "rel",
+              "toKey": "authorize",
+              "fromPath": "body->links->3->rel",
+              "toPath": "url->authorize",
+              "fromValue": "authorize",
+              "toValue": "authorize",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 3
+            },
+            {
+              "fromKey": "id",
+              "toKey": "6U979679CB417882E",
+              "fromPath": "body->id",
+              "toPath": "url->6U979679CB417882E",
+              "fromValue": "6U979679CB417882E",
+              "toValue": "6U979679CB417882E",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/checkout/orders/6U979679CB417882E",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/checkout/orders/6U979679CB417882E/authorize",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "6U979679CB417882E",
+              "fromPath": "body->id",
+              "toPath": "url->6U979679CB417882E",
+              "fromValue": "6U979679CB417882E",
+              "toValue": "6U979679CB417882E",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 3
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "authorize",
+              "fromPath": "body->links->3->rel",
+              "toPath": "url->authorize",
+              "fromValue": "authorize",
+              "toValue": "authorize",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/checkout/orders/6U979679CB417882E/authorize",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/3DT431301F1137727/void",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "3DT431301F1137727",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->id",
+              "toPath": "url->3DT431301F1137727",
+              "fromValue": "3DT431301F1137727",
+              "toValue": "3DT431301F1137727",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 4
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "void",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->links->2->rel",
+              "toPath": "url->void",
+              "fromValue": "void",
+              "toValue": "void",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 4
+            }
+          ]
+        },
+        {
+          "name": "GET v2/payments/authorizations/3DT431301F1137727",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "3DT431301F1137727",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->id",
+              "toPath": "url->3DT431301F1137727",
+              "fromValue": "3DT431301F1137727",
+              "toValue": "3DT431301F1137727",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/payments/authorizations/3DT431301F1137727/void",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v2/payments/authorizations/3DT431301F1137727",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "3DT431301F1137727",
+              "fromPath": "body->id",
+              "toPath": "url->3DT431301F1137727",
+              "fromValue": "3DT431301F1137727",
+              "toValue": "3DT431301F1137727",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "1b",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/authorizations/3DT431301F1137727",
+      "method": "GET",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] }
+  ]
+}

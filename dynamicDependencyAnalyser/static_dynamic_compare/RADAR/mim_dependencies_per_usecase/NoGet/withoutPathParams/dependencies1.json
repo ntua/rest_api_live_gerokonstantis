@@ -1,0 +1,574 @@
+{
+  "info": {
+    "nodes": "14",
+    "interdependencyNodes": "9",
+    "dependentOnlyNodes": "1",
+    "derivingOnlyDependencyNodes": "6",
+    "bothDependentDerivingNodes": "2",
+    "edges": "10",
+    "dependenciesPerAttribute": "25",
+    "bodyDependencies": "25",
+    "queryDependencies": "0",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "POST v2/checkout/orders",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/77E24576AV294530B/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/checkout/orders/0SV42290DB743762L",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/77E24576AV294530B/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/checkout/orders/0SV42290DB743762L/authorize",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/77E24576AV294530B/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->handling->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->tax->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping_discount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->insurance->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/authorizations/77E24576AV294530B",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/77E24576AV294530B/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "1",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/payments/authorizations/77E24576AV294530B/capture",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/shipping/trackers-batch",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->trackers->0->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 11
+            }
+          ]
+        },
+        {
+          "name": "PUT v1/shipping/trackers/9F694541N2045151V-1722691303179",
+          "method": "PUT",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/captures/9F694541N2045151V",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/shipping/trackers-batch",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->trackers->0->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 11
+            }
+          ]
+        },
+        {
+          "name": "PUT v1/shipping/trackers/9F694541N2045151V-1722691303179",
+          "method": "PUT",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v1/shipping/trackers-batch",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "PUT v1/shipping/trackers/9F694541N2045151V-1722691303179",
+          "method": "PUT",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "transaction_id",
+              "toKey": "transaction_id",
+              "fromPath": "body->tracker_identifiers->0->transaction_id",
+              "toPath": "body->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "tracking_number",
+              "toKey": "tracking_number",
+              "fromPath": "body->tracker_identifiers->0->tracking_number",
+              "toPath": "body->tracking_number",
+              "fromValue": "1722691303179",
+              "toValue": "1722691303179",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {
+                "name": "timestamp",
+                "variant": "millisecondsSinceEpoch"
+              },
+              "use_case": "1",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/shipping/trackers/9F694541N2045151V-1722691303179",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "PUT v1/shipping/trackers/9F694541N2045151V-1722691303179",
+          "method": "PUT",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "tracking_number",
+              "toKey": "tracking_number",
+              "fromPath": "body->tracking_number",
+              "toPath": "body->tracking_number",
+              "fromValue": "1722691303179",
+              "toValue": "1722691303179",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {
+                "name": "timestamp",
+                "variant": "millisecondsSinceEpoch"
+              },
+              "use_case": "1",
+              "fromSeqNumber": 12,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "transaction_id",
+              "toKey": "transaction_id",
+              "fromPath": "body->transaction_id",
+              "toPath": "body->transaction_id",
+              "fromValue": "9F694541N2045151V",
+              "toValue": "9F694541N2045151V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 12,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "status",
+              "toKey": "status",
+              "fromPath": "body->status",
+              "toPath": "body->status",
+              "fromValue": "SHIPPED",
+              "toValue": "SHIPPED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1",
+              "fromSeqNumber": 12,
+              "toSeqNumber": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PUT v1/shipping/trackers/9F694541N2045151V-1722691303179",
+      "method": "PUT",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/catalogs/products",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "PATCH v1/catalogs/products/1722691260627",
+      "method": "PATCH",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] },
+    {
+      "name": "GET v1/catalogs/products/1722691260627",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "PATCH v2/checkout/orders/0SV42290DB743762L",
+      "method": "PATCH",
+      "dependencies": []
+    }
+  ]
+}

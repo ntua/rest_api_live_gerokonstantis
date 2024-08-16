@@ -1,0 +1,38 @@
+{
+  "info": {
+    "nodes": "6",
+    "interdependencyNodes": "0",
+    "dependentOnlyNodes": "0",
+    "derivingOnlyDependencyNodes": "0",
+    "bothDependentDerivingNodes": "0",
+    "edges": "0",
+    "dependenciesPerAttribute": "0",
+    "bodyDependencies": "0",
+    "queryDependencies": "0",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "POST v2/checkout/orders/6U979679CB417882E/authorize",
+      "method": "POST",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] },
+    {
+      "name": "GET v2/payments/authorizations/3DT431301F1137727",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "GET v2/checkout/orders/6U979679CB417882E",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "POST v2/payments/authorizations/3DT431301F1137727/void",
+      "method": "POST",
+      "dependencies": []
+    },
+    { "name": "POST v2/checkout/orders", "method": "POST", "dependencies": [] }
+  ]
+}

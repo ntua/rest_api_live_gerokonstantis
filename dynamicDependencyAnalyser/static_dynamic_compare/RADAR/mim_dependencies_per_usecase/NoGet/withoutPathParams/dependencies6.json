@@ -1,0 +1,37 @@
+{
+  "info": {
+    "nodes": "5",
+    "interdependencyNodes": "0",
+    "dependentOnlyNodes": "0",
+    "derivingOnlyDependencyNodes": "0",
+    "bothDependentDerivingNodes": "0",
+    "edges": "0",
+    "dependenciesPerAttribute": "0",
+    "bodyDependencies": "0",
+    "queryDependencies": "0",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "POST v1/payments/payouts-item/6CHW2TK6SL2T8/cancel",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "GET v1/payments/payouts/N2N8PL5VLS8C6",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/payments/payouts",
+      "method": "POST",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] },
+    {
+      "name": "GET v1/payments/payouts-item/7EFGUGCZXCKHA",
+      "method": "GET",
+      "dependencies": []
+    }
+  ]
+}

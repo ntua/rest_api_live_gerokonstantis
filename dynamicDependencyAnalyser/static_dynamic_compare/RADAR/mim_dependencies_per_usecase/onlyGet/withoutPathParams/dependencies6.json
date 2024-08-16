@@ -1,0 +1,26 @@
+{
+  "info": {
+    "nodes": "5",
+    "interdependencyNodes": "0",
+    "dependentOnlyNodes": "0",
+    "derivingOnlyDependencyNodes": "0",
+    "bothDependentDerivingNodes": "0",
+    "edges": "0",
+    "dependenciesPerAttribute": "0",
+    "bodyDependencies": "0",
+    "queryDependencies": "0",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "GET v1/payments/payouts-item/7EFGUGCZXCKHA",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "GET v1/payments/payouts/N2N8PL5VLS8C6",
+      "method": "GET",
+      "dependencies": []
+    }
+  ]
+}

@@ -1,0 +1,1556 @@
+{
+  "info": {
+    "nodes": "16",
+    "interdependencyNodes": "14",
+    "dependentOnlyNodes": "2",
+    "derivingOnlyDependencyNodes": "4",
+    "bothDependentDerivingNodes": "8",
+    "edges": "32",
+    "dependenciesPerAttribute": "76",
+    "bodyDependencies": "41",
+    "queryDependencies": "2",
+    "pathDependencies": "33"
+  },
+  "endpoints": [
+    {
+      "name": "POST v1/notifications/webhooks",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/notifications/webhooks/4FC365949M405835A",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 3
+            }
+          ]
+        },
+        {
+          "name": "GET v1/notifications/webhooks/4FC365949M405835A/event-types",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 4
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "0",
+              "fromPath": "body->id",
+              "toPath": "body->webhook_ids->0",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 13
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "url",
+              "toKey": "url",
+              "fromPath": "body->url",
+              "toPath": "body->url",
+              "fromValue": "https://en51y6nlksvla.x.pipedream.net",
+              "toValue": "https://en51y6nlksvla.x.pipedream.net",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "uri" },
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "id",
+              "toKey": "webhook_id",
+              "fromPath": "body->id",
+              "toPath": "body->webhook_id",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 14
+            }
+          ]
+        },
+        {
+          "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+          "method": "PATCH",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 15
+            }
+          ]
+        },
+        {
+          "name": "DELETE v1/notifications/webhooks/4FC365949M405835A",
+          "method": "DELETE",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/notifications/webhooks",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/notifications/webhooks/4FC365949M405835A",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 3
+            }
+          ]
+        },
+        {
+          "name": "GET v1/notifications/webhooks/4FC365949M405835A/event-types",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 4
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "0",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "body->webhook_ids->0",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 13
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "url",
+              "toKey": "url",
+              "fromPath": "body->webhooks->0->url",
+              "toPath": "body->url",
+              "fromValue": "https://en51y6nlksvla.x.pipedream.net",
+              "toValue": "https://en51y6nlksvla.x.pipedream.net",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "uri" },
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "id",
+              "toKey": "webhook_id",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "body->webhook_id",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 14
+            }
+          ]
+        },
+        {
+          "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+          "method": "PATCH",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 15
+            }
+          ]
+        },
+        {
+          "name": "DELETE v1/notifications/webhooks/4FC365949M405835A",
+          "method": "DELETE",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->webhooks->0->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/notifications/webhooks/4FC365949M405835A",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/notifications/webhooks/4FC365949M405835A/event-types",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 4
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "0",
+              "fromPath": "body->id",
+              "toPath": "body->webhook_ids->0",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 13
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "webhook_id",
+              "fromPath": "body->id",
+              "toPath": "body->webhook_id",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "url",
+              "toKey": "url",
+              "fromPath": "body->url",
+              "toPath": "body->url",
+              "fromValue": "https://en51y6nlksvla.x.pipedream.net",
+              "toValue": "https://en51y6nlksvla.x.pipedream.net",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "uri" },
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 14
+            }
+          ]
+        },
+        {
+          "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+          "method": "PATCH",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 15
+            }
+          ]
+        },
+        {
+          "name": "DELETE v1/notifications/webhooks/4FC365949M405835A",
+          "method": "DELETE",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+      "method": "PATCH",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "DELETE v1/notifications/webhooks/4FC365949M405835A",
+          "method": "DELETE",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "4FC365949M405835A",
+              "fromPath": "body->id",
+              "toPath": "url->4FC365949M405835A",
+              "fromValue": "4FC365949M405835A",
+              "toValue": "4FC365949M405835A",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 15,
+              "toSeqNumber": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/checkout/orders",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/checkout/orders/19J34806BS068403E/authorize",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "19J34806BS068403E",
+              "fromPath": "body->id",
+              "toPath": "url->19J34806BS068403E",
+              "fromValue": "19J34806BS068403E",
+              "toValue": "19J34806BS068403E",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "authorize",
+              "fromPath": "body->links->3->rel",
+              "toPath": "url->authorize",
+              "fromValue": "authorize",
+              "toValue": "authorize",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 6
+            }
+          ]
+        },
+        {
+          "name": "POST v2/payments/authorizations/1DP4307920107562V/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/checkout/orders/19J34806BS068403E/authorize",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/1DP4307920107562V/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->insurance->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->tax->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "capture",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->links->1->rel",
+              "toPath": "url->capture",
+              "fromValue": "capture",
+              "toValue": "capture",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping_discount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->handling->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "id",
+              "toKey": "1DP4307920107562V",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->id",
+              "toPath": "url->1DP4307920107562V",
+              "fromValue": "1DP4307920107562V",
+              "toValue": "1DP4307920107562V",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "7",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/payments/authorizations/1DP4307920107562V/capture",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/notifications/webhooks-events",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "url->transaction_id",
+              "fromValue": "7UK91581TA388313P",
+              "toValue": "7UK91581TA388313P",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/notifications/webhooks-event-types",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+          "method": "PATCH",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "name",
+              "toKey": "name",
+              "fromPath": "body->event_types->133->name",
+              "toPath": "body->0->value->0->name",
+              "fromValue": "CUSTOMER.DISPUTE.CREATED",
+              "toValue": "CUSTOMER.DISPUTE.CREATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 15
+            },
+            {
+              "fromKey": "name",
+              "toKey": "name",
+              "fromPath": "body->event_types->94->name",
+              "toPath": "body->0->value->1->name",
+              "fromValue": "CATALOG.PRODUCT.CREATED",
+              "toValue": "CATALOG.PRODUCT.CREATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 15
+            },
+            {
+              "fromKey": "name",
+              "toKey": "name",
+              "fromPath": "body->event_types->82->name",
+              "toPath": "body->0->value->2->name",
+              "fromValue": "BILLING.PLAN.PRICING-CHANGE.ACTIVATED",
+              "toValue": "BILLING.PLAN.PRICING-CHANGE.ACTIVATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 15
+            },
+            {
+              "fromKey": "name",
+              "toKey": "name",
+              "fromPath": "body->event_types->80->name",
+              "toPath": "body->0->value->4->name",
+              "fromValue": "BILLING.PLAN.CREATED",
+              "toValue": "BILLING.PLAN.CREATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 15
+            },
+            {
+              "fromKey": "name",
+              "toKey": "name",
+              "fromPath": "body->event_types->24->name",
+              "toPath": "body->0->value->3->name",
+              "fromValue": "PAYMENT.PAYOUTSBATCH.SUCCESS",
+              "toValue": "PAYMENT.PAYOUTSBATCH.SUCCESS",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 15
+            }
+          ]
+        },
+        {
+          "name": "GET v1/notifications/webhooks-events",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "name",
+              "toKey": "event_type",
+              "fromPath": "body->event_types->50->name",
+              "toPath": "url->event_type",
+              "fromValue": "PAYMENT.CAPTURE.COMPLETED",
+              "toValue": "PAYMENT.CAPTURE.COMPLETED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 9
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "name",
+              "toKey": "event_type",
+              "fromPath": "body->event_types->133->name",
+              "toPath": "body->event_type",
+              "fromValue": "CUSTOMER.DISPUTE.CREATED",
+              "toValue": "CUSTOMER.DISPUTE.CREATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v1/notifications/simulate-event",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "PATCH v1/notifications/webhooks/4FC365949M405835A",
+          "method": "PATCH",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "event_type",
+              "toKey": "name",
+              "fromPath": "body->event_type",
+              "toPath": "body->0->value->0->name",
+              "fromValue": "CUSTOMER.DISPUTE.CREATED",
+              "toValue": "CUSTOMER.DISPUTE.CREATED",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 14,
+              "toSeqNumber": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/notifications/webhooks-events",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "WH-8K897993085789025-3EX68161XY2385936",
+              "fromPath": "body->events->0->id",
+              "toPath": "url->WH-8K897993085789025-3EX68161XY2385936",
+              "fromValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "toValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 11
+            },
+            {
+              "fromKey": "id",
+              "toKey": "WH-8K897993085789025-3EX68161XY2385936",
+              "fromPath": "body->events->0->id",
+              "toPath": "url->WH-8K897993085789025-3EX68161XY2385936",
+              "fromValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "toValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 11
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "WH-8K897993085789025-3EX68161XY2385936",
+              "fromPath": "body->events->0->id",
+              "toPath": "url->WH-8K897993085789025-3EX68161XY2385936",
+              "fromValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "toValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->6->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->3->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->5->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->2->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->1->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->0->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->8->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->9->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "id",
+              "toKey": "WH-8K897993085789025-3EX68161XY2385936",
+              "fromPath": "body->events->0->id",
+              "toPath": "url->WH-8K897993085789025-3EX68161XY2385936",
+              "fromValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "toValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->7->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->4->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->events->0->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 13
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->0->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->5->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->1->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->0->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->8->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->6->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->4->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->7->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->9->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->3->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            },
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->events->2->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "WH-8K897993085789025-3EX68161XY2385936",
+              "fromPath": "body->id",
+              "toPath": "url->WH-8K897993085789025-3EX68161XY2385936",
+              "fromValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "toValue": "WH-8K897993085789025-3EX68161XY2385936",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 13
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "resend",
+              "fromPath": "body->links->1->rel",
+              "toPath": "url->resend",
+              "fromValue": "resend",
+              "toValue": "resend",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 13
+            }
+          ]
+        },
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v1/notifications/webhooks-events/WH-8K897993085789025-3EX68161XY2385936/resend",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/notifications/simulate-event",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "event_version",
+              "toKey": "resource_version",
+              "fromPath": "body->event_version",
+              "toPath": "body->resource_version",
+              "fromValue": "1.0",
+              "toValue": "1.0",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "7",
+              "fromSeqNumber": 13,
+              "toSeqNumber": 14
+            }
+          ]
+        }
+      ]
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] },
+    {
+      "name": "POST v1/catalogs/products",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "GET v1/notifications/webhooks/4FC365949M405835A/event-types",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "DELETE v1/notifications/webhooks/4FC365949M405835A",
+      "method": "DELETE",
+      "dependencies": []
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "info": {
+    "nodes": "7",
+    "interdependencyNodes": "2",
+    "dependentOnlyNodes": "1",
+    "derivingOnlyDependencyNodes": "1",
+    "bothDependentDerivingNodes": "0",
+    "edges": "1",
+    "dependenciesPerAttribute": "1",
+    "bodyDependencies": "1",
+    "queryDependencies": "0",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "GET v1/catalogs/products/1722691340466",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/checkout/orders",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "description",
+              "toKey": "description",
+              "fromPath": "body->description",
+              "toPath": "body->purchase_units->0->items->0->description",
+              "fromValue": "Product's description 1",
+              "toValue": "Product's description 1",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "1c",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/refunds/9HX84771W5350250S",
+      "method": "GET",
+      "dependencies": []
+    }
+  ]
+}

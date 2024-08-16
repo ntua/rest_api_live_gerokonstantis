@@ -1,0 +1,1149 @@
+{
+  "info": {
+    "nodes": "19",
+    "interdependencyNodes": "11",
+    "dependentOnlyNodes": "1",
+    "derivingOnlyDependencyNodes": "7",
+    "bothDependentDerivingNodes": "3",
+    "edges": "18",
+    "dependenciesPerAttribute": "56",
+    "bodyDependencies": "52",
+    "queryDependencies": "4",
+    "pathDependencies": "0"
+  },
+  "endpoints": [
+    {
+      "name": "POST v2/checkout/orders",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/86246157AW834214T/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 6
+            }
+          ]
+        },
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/checkout/orders/28066893UX357631F",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/86246157AW834214T/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 6
+            }
+          ]
+        },
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 3,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/checkout/orders/28066893UX357631F/authorize",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/86246157AW834214T/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->tax->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->handling->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->insurance->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping_discount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 6
+            }
+          ]
+        },
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->handling->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->payments->authorizations->0->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->insurance->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->tax->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping_discount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->item_total->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->amount->breakdown->shipping->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->purchase_units->0->items->0->unit_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 4,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/authorizations/86246157AW834214T",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v2/payments/authorizations/86246157AW834214T/capture",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->amount->currency_code",
+              "toPath": "body->amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 6
+            }
+          ]
+        },
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 5,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v2/payments/authorizations/86246157AW834214T/capture",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "rel",
+              "toKey": "offer_type",
+              "fromPath": "body->links->1->rel",
+              "toPath": "body->offer_type",
+              "fromValue": "refund",
+              "toValue": "REFUND",
+              "strict_matching": false,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->gross_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "source_currency",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->exchange_rate->source_currency",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->paypal_fee->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 12
+            }
+          ]
+        },
+        {
+          "name": "POST v1/shipping/trackers-batch",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->trackers->0->transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 8
+            }
+          ]
+        },
+        {
+          "name": "GET v1/customer/disputes",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "disputed_transaction_id",
+              "fromPath": "body->id",
+              "toPath": "url->disputed_transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 6,
+              "toSeqNumber": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v2/payments/captures/0P723788C8141505R",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->gross_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "rel",
+              "toKey": "offer_type",
+              "fromPath": "body->links->1->rel",
+              "toPath": "body->offer_type",
+              "fromValue": "refund",
+              "toValue": "REFUND",
+              "strict_matching": false,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->net_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->paypal_fee->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "source_currency",
+              "toKey": "currency_code",
+              "fromPath": "body->seller_receivable_breakdown->exchange_rate->source_currency",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 12
+            }
+          ]
+        },
+        {
+          "name": "POST v1/shipping/trackers-batch",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "transaction_id",
+              "fromPath": "body->id",
+              "toPath": "body->trackers->0->transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 8
+            }
+          ]
+        },
+        {
+          "name": "GET v1/customer/disputes",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "id",
+              "toKey": "disputed_transaction_id",
+              "fromPath": "body->id",
+              "toPath": "url->disputed_transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 7,
+              "toSeqNumber": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/customer/disputes",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->items->0->dispute_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 10,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/customer/disputes/PP-R-ZYC-10097424",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->dispute_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->disputed_transactions->0->gross_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "0",
+              "toKey": "offer_type",
+              "fromPath": "body->allowed_response_options->make_offer->offer_types->0",
+              "toPath": "body->offer_type",
+              "fromValue": "REFUND",
+              "toValue": "REFUND",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->offer->buyer_requested_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "3",
+              "toKey": "offer_type",
+              "fromPath": "body->allowed_response_options->accept_claim->accept_claim_types->3",
+              "toPath": "body->offer_type",
+              "fromValue": "REFUND",
+              "toValue": "REFUND",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            },
+            {
+              "fromKey": "currency_code",
+              "toKey": "currency_code",
+              "fromPath": "body->refund_details->allowed_refund_amount->currency_code",
+              "toPath": "body->offer_amount->currency_code",
+              "fromValue": "USD",
+              "toValue": "USD",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "body",
+              "format": { "name": "currency", "variant": "iso4217" },
+              "use_case": "3",
+              "fromSeqNumber": 11,
+              "toSeqNumber": 12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v1/shipping/trackers-batch",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/customer/disputes",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "transaction_id",
+              "toKey": "disputed_transaction_id",
+              "fromPath": "body->tracker_identifiers->0->transaction_id",
+              "toPath": "url->disputed_transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 8,
+              "toSeqNumber": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/shipping/trackers/0P723788C8141505R-1722701316460",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/customer/disputes",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "transaction_id",
+              "toKey": "disputed_transaction_id",
+              "fromPath": "body->transaction_id",
+              "toPath": "url->disputed_transaction_id",
+              "fromValue": "0P723788C8141505R",
+              "toValue": "0P723788C8141505R",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "query",
+              "format": {},
+              "use_case": "3",
+              "fromSeqNumber": 9,
+              "toSeqNumber": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/provide-supporting-info",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/adjudicate",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "PATCH v2/checkout/orders/28066893UX357631F",
+      "method": "PATCH",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/make-offer",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/require-evidence",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/escalate",
+      "method": "POST",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/provide-evidence",
+      "method": "POST",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] },
+    {
+      "name": "POST v1/customer/disputes/PP-R-ZYC-10097424/send-message",
+      "method": "POST",
+      "dependencies": []
+    }
+  ]
+}

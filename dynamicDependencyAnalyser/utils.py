@@ -34,7 +34,7 @@ def parse_nested_obj(obj, flag, request_info, reqbody_values, resbody_values, pa
         else:
             attribute_info={}   
             attribute_info['name'] = attribute
-            attribute_info['path'] = '->'.join(path_list+[attribute])
+            attribute_info['path'] = '->'.join(['body']+path_list+[attribute])
             attribute_info['type_of_param'] = "body"
             attribute_info['type'] = attribute_value['name']
             if 'format' in attribute_value:

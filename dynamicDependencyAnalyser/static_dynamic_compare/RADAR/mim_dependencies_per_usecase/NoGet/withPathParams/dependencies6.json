@@ -1,0 +1,110 @@
+{
+  "info": {
+    "nodes": "5",
+    "interdependencyNodes": "4",
+    "dependentOnlyNodes": "2",
+    "derivingOnlyDependencyNodes": "1",
+    "bothDependentDerivingNodes": "1",
+    "edges": "3",
+    "dependenciesPerAttribute": "3",
+    "bodyDependencies": "0",
+    "queryDependencies": "0",
+    "pathDependencies": "3"
+  },
+  "endpoints": [
+    {
+      "name": "POST v1/payments/payouts",
+      "method": "POST",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/payments/payouts/N2N8PL5VLS8C6",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "payout_batch_id",
+              "toKey": "N2N8PL5VLS8C6",
+              "fromPath": "body->batch_header->payout_batch_id",
+              "toPath": "url->N2N8PL5VLS8C6",
+              "fromValue": "N2N8PL5VLS8C6",
+              "toValue": "N2N8PL5VLS8C6",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "6",
+              "fromSeqNumber": 1,
+              "toSeqNumber": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/payments/payouts/N2N8PL5VLS8C6",
+      "method": "GET",
+      "description": "not available",
+      "dependencies": [
+        {
+          "name": "GET v1/payments/payouts-item/7EFGUGCZXCKHA",
+          "method": "GET",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "payout_item_id",
+              "toKey": "7EFGUGCZXCKHA",
+              "fromPath": "body->items->0->payout_item_id",
+              "toPath": "url->7EFGUGCZXCKHA",
+              "fromValue": "7EFGUGCZXCKHA",
+              "toValue": "7EFGUGCZXCKHA",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "6",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 3
+            }
+          ]
+        },
+        {
+          "name": "POST v1/payments/payouts-item/6CHW2TK6SL2T8/cancel",
+          "method": "POST",
+          "description": "not available",
+          "attributes": [
+            {
+              "fromKey": "payout_item_id",
+              "toKey": "6CHW2TK6SL2T8",
+              "fromPath": "body->items->1->payout_item_id",
+              "toPath": "url->6CHW2TK6SL2T8",
+              "fromValue": "6CHW2TK6SL2T8",
+              "toValue": "6CHW2TK6SL2T8",
+              "strict_matching": true,
+              "type": "string",
+              "fromParamType": "body",
+              "toParamType": "path",
+              "format": {},
+              "use_case": "6",
+              "fromSeqNumber": 2,
+              "toSeqNumber": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET v1/payments/payouts-item/7EFGUGCZXCKHA",
+      "method": "GET",
+      "dependencies": []
+    },
+    {
+      "name": "POST v1/payments/payouts-item/6CHW2TK6SL2T8/cancel",
+      "method": "POST",
+      "dependencies": []
+    },
+    { "name": "POST v1/oauth2/token", "method": "POST", "dependencies": [] }
+  ]
+}

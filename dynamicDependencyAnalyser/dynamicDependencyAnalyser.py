@@ -13,7 +13,8 @@ while True:
         print(Fore.RED+'wrong file format:', user_input.split(".")[-1], 'instead of json')
         print(Style.RESET_ALL)
     else:
-        input_path_list = glob.glob("../mim logs/*/{}".format(user_input), recursive=True)
+        input_path_list = glob.glob("../mim logs/*/{}".format(user_input), recursive=True) or glob.glob("./static_dynamic_compare/RADAR/reduced_mim_logs/{}".format(user_input), recursive=True)
+
         if len(input_path_list)==0:
             print(Fore.RED+'file not found')
             print(Style.RESET_ALL)
