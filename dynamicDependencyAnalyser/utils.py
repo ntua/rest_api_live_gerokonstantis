@@ -145,7 +145,7 @@ def transform_dependency_graph(dependency_graph):
             transformed_dependency_graph[endpoint_pair[0]]=[]
         dep_attributes=[]
         for tuple in dependency_graph[endpoint_pair]:
-            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "fromPath": tuple[2], "toPath": tuple[3], "fromValue": tuple[4], "toValue": tuple[12], "strict_matching": tuple[13],"type": tuple[5], "fromParamType": tuple[6], "toParamType": tuple[7], "format": eval(tuple[8]), "use_case": tuple[9], "fromSeqNumber": tuple[10], "toSeqNumber": tuple[11]})
+            dep_attributes.append({"fromKey": tuple[0], "toKey": tuple[1], "fromPath": tuple[2], "toPath": tuple[3], "fromValue": tuple[4], "toValue": tuple[12], "strict_matching": tuple[13],"type": tuple[5], "fromParamType": tuple[6], "toParamType": tuple[7], "format": eval(tuple[8]), "use_case": tuple[9], "fromSeqNumber": tuple[10], "toSeqNumber": tuple[11], "parameter": tuple[7]})
         transformed_dependency_graph[endpoint_pair[0]].append({'dependent_endpoint_name': endpoint_pair[1], 'attributes':dep_attributes})
     return transformed_dependency_graph
 

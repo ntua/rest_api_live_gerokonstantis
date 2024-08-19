@@ -2,7 +2,7 @@ import json
 import numpy as np 
 import matplotlib.pyplot as plt
 
-configurations = ['withQueryNoGetMethodNoPathNoStrictTypes', 'withQueryNoGetMethodNoPathStrictTypes', 'withQueryNoGetMethodWithPathNoStrictTypes', 'withQueryNoGetMethodWithPathStrictTypes', 'withQueryOnlyGetNoPathNoStrictTypes', 'withQueryOnlyGetNoPathStrictTypes', 'withQueryOnlyGetWithPathNoStrictTypes', 'withQueryOnlyGetWithPathStrictTypes']
+configurations = ['withQueryNoGetMethodNoPathNoStrictTypes', 'withQueryNoGetMethodNoPathStrictTypes', 'withQueryNoGetMethodWithPathNoStrictTypes', 'withQueryNoGetMethodWithPathStrictTypes', 'withQueryOnlyGetNoPathNoStrictTypes', 'withQueryOnlyGetNoPathStrictTypes', 'withQueryOnlyGetWithPathNoStrictTypes', 'withQueryOnlyGetWithPathStrictTypes','noQueryOnlyGetnoPathStrictTypes','noQueryNoGetnoPathStrictTypes']
 
 # compare a dynamic and a static url
 # (!) : in dynamic urls, path params have real values, in static urls we see only the name of the path param 
