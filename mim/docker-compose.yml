@@ -16,6 +16,7 @@ services:
       - app-network
     volumes:
       - ./uploads:/app/uploads
+      - ./downloads:/app/downloads
 
   db:
     image: mongo

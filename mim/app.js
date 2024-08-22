@@ -3,6 +3,7 @@ const cors = require("cors");
 const multer = require("multer");
 
 const proxy = require("./routes/proxy");
+const proxy_utils = require("./routes/proxy_utils");
 
 // Multer storage configuration
 const storage = multer.diskStorage({
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 /* Routes used */
 app.use("/proxy/", proxy);
+app.use("/proxy_utils/", proxy_utils);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "Endpoint not found" });

@@ -22,6 +22,8 @@ while True:
             input_path = input_path_list[0]
             break
 
+jwt = input('Enter your token: ')
+
 dependencies = eval(open(input_path, 'r').read(), {'true':True, 'false':False, 'null': {}})
 filename=input('Enter the name of the graph: ')+'.json'
 
@@ -32,7 +34,7 @@ headers = {
     'Accept-Language': 'en-US,en;q=0.9',
     'Connection': 'keep-alive',
     'Content-Type': 'application/json',
-    'Cookie': '_ga=GA1.2.496286972.1722854675; _ga_BQ6WS9N7TV=GS1.2.1722854675.1.1.1722854794.0.0.0; g_state={"i_l":0}; user=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Im5hbWUiOiLOlM63zrzOrs-Ez4HOt8-CIM6TzrXPgc6_zrrPic69z4PPhM6xzr3PhM6uz4IiLCJlbWFpbCI6ImRpbWl0cmlzZ2VyMkBnbWFpbC5jb20iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jTFBhcjAtWnhsWWFMbGZkN2NMbzFmOTV3ci15Q0tqNVBERUlzVTNKZ2FBeVlROVBFYz1zOTYtYyIsIl9pZCI6IjY2YmUxMWYwM2ZiOTAxYWYxNGQ1YWYzNiIsImNyZWF0ZWRBdCI6IjIwMjQtMDgtMTVUMTQ6MzQ6MjQuNDc3WiIsIl9fdiI6MH0sImlhdCI6MTcyMzczMjQ2NCwiZXhwIjoxNzI0MzM3MjY0fQ.f6zS60t2GF8bSbIYbX6Z5KojseDqhyUcI95RgEZGOyc',
+    'Cookie': '_ga=GA1.2.496286972.1722854675; _ga_BQ6WS9N7TV=GS1.2.1722854675.1.1.1722854794.0.0.0; g_state={"i_l":0}; user='+jwt,
     'Origin': 'https://radar.softlab.ntua.gr',
     'Referer': 'https://radar.softlab.ntua.gr/',
     'Sec-Fetch-Dest': 'empty',
