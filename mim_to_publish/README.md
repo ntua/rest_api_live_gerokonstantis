@@ -45,7 +45,7 @@ PUT http://localhost:3003/proxy/https_api-m_sandbox_paypal_com/jimmy/v2/invoicin
 ```
 Pay attention to the way in which the domain is passed into the URL. The symbols `://` have to be replaced with underscore and any following dot is also replaced with underscore.
 ### Export API calls
-MIM provides one more usefull endpoint for exporting the records associated with a specific API : `proxy_utils/export/:domain`. If there is a need to export all the records associated with the PayPal API (url : `https://api-m.sandbox.paypal.com`), you can just make a GET request as below (you can only use a browser to make this GET request):
+MIM provides one more useful endpoint for exporting the records associated with a specific API : `proxy_utils/export/:domain`. If there is a need to export all the records associated with the PayPal API (url : `https://api-m.sandbox.paypal.com`), you can just make a GET request as below (you can only use a browser to make this GET request):
 ```
 GET http://localhost:3003/proxy_utils/export/https_api-m_sandbox_paypal_com
 ```
