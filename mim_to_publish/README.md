@@ -2,7 +2,7 @@
 This repo contains the source code for the **_Man in the Middle_** (MIM) software that was developed as a part of a tool for dynamic API dependency analysis. 
 
 ## Description
-MIM is designed to capture and store requests made to an API before undertaking itself to forward them to the API. In this way, MIM operates as a mediator between the client and the API. 
+MIM is designed to capture and store requests made to an API while undertaking itself to forward them to the API and receive the response. In this way, MIM operates as a mediator between the client and the API. 
 The client sends API requests to MIM, MIM forwards them to the API and receives the response, stores information about the API call and returns the response to the client. This process is illustrated in the sequence diagram below.
 
 <p align="center"><img src="https://github.com/user-attachments/assets/9c786206-ad8d-4154-8361-6ed280994382" width="600" height="280" /></p>
