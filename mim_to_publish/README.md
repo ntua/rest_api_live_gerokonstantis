@@ -52,7 +52,7 @@ GET http://localhost:3003/proxy_utils/export/https_api-m_sandbox_paypal_com
 After that, the created .json file will be saved in the directory `/mim/downloads`. 
 
 ## Paypal Scripts
-For testing purposes, in the `/paypal_scripts` directory, a set of scripts that execute some possible PayPal API use cases is also available. Once MIM is set up and running (locally on port 3003), move to the `/paypal_scripts` directory and run `npm install` so as to install the necessary packages. In order to run the scripts, use the command :
+For testing purposes, in the `/paypal scripts` directory, a set of scripts that execute some possible PayPal API use cases is also available. Once MIM is set up and running (locally on port 3003), move to the `/paypal scripts` directory and run `npm install` so as to install the necessary packages. In order to run the scripts, use the command :
 ```
 node index.js [arguments]
 ```
