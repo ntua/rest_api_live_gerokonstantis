@@ -1,36 +1,17 @@
-import { useCase1bRequests } from "./requests/useCases/UseCase1bReqs.js";
-import { useCase1cRequests } from "./requests/useCases/UseCase1cReqs.js";
-import { useCase1Requests } from "./requests/useCases/UseCase1Reqs.js";
-import { useCase2bRequests } from "./requests/useCases/UseCase2bReqs.js";
-import { useCase2Requests } from "./requests/useCases/UseCase2Reqs.js";
-import { useCase3bRequests } from "./requests/useCases/UseCase3bReqs.js";
-import { useCase3Requests } from "./requests/useCases/UseCase3Reqs.js";
-import { useCase4Requests } from "./requests/useCases/UseCase4Reqs.js";
-import { useCase5Requests } from "./requests/useCases/UseCase5Reqs.js";
-import { useCase6Requests } from "./requests/useCases/UseCase6Reqs.js";
-import { useCase7Requests } from "./requests/useCases/UseCase7Reqs.js";
-import { useCase8Requests } from "./requests/useCases/UseCase8Reqs.js";
+import { scripts } from "./import_scripts.js";
 
-await useCase1Requests();
-console.log("");
-await useCase1bRequests();
-console.log("");
-await useCase1cRequests();
-console.log("");
-await useCase2Requests();
-console.log("");
-await useCase2bRequests();
-console.log("");
-await useCase3Requests();
-console.log("");
-await useCase3bRequests();
-console.log("");
-await useCase4Requests();
-console.log("");
-await useCase5Requests();
-console.log("");
-await useCase6Requests();
-console.log("");
-await useCase7Requests();
-console.log("");
-await useCase8Requests();
+const args = process.argv.slice(2);
+
+if (args.length === 1 && args[0] === "all") {
+  for (let usecase in scripts) {
+    await scripts[usecase]();
+  }
+} else {
+  for (let arg of args) {
+    if (arg in scripts) {
+      await scripts[arg]();
+    } else {
+      console.log("USE CASE", arg, "was not found!\n");
+    }
+  }
+}
