@@ -27,7 +27,7 @@ It is important to note that MIM has to be placed between an API client and an A
 
 ## Set up (locally) and use MIM
 The prerequisite for running MIM is that you already have the [Docker environment](https://docs.docker.com/engine/install/) installed. If so, it is only necessary to move to the **mim** directory and run
-`(sudo) docker-compose up`
+`(sudo) docker-compose up`.
 After that, MIM will be running locally on port 3003.
 
 ### Make an API call using MIM
@@ -71,4 +71,6 @@ node index.js [arguments]
 After that, we test the webhook by triggering a sample event and simulating the webhook with a "CUSTOMER.DISPUTE.CREATED" event.
 The Webhook is updated so as not to capture all possible events and finally the webhook is deleted.
 - **8** : An invoice template is created and after retrieving details, it is updated and then deleted.
+### Make your own scripts
+If you want to write a script to run some use cases for the API you are interested in, consider using the [**_selenium_**](https://www.selenium.dev/documentation/) package. A complete interaction with an API may require some interaction with the API's UI (if any) using a browser. **_selenium_** can be used as a browser automation tool and can be very helpful while writing such scripts. It is also recommended to use javascript and **_axios_** library to make the API calls. 
 
