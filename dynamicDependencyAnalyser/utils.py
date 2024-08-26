@@ -2,6 +2,8 @@ import json
 
 # checks if an object is nested so as to continue parsing
 def is_nested_obj(obj):
+    if 'name' not in obj and 'value' not in obj:
+        return True
     for attribute, value in obj.items():
         if type(value)==dict and attribute!='format':
             return True
