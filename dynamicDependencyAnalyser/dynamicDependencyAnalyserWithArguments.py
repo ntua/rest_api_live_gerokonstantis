@@ -28,7 +28,7 @@ if(sys.argv[6] == 'True'):
 
 
 # read list of requests stored by mim (i.e. json file exported from MongoDB)
-input_list = eval(open(input_path, 'r').read().replace('"true"', '"True"'), {'true':True, 'false':False})
+input_list = eval(open(input_path, 'r').read().replace('"true"', '"True"'), {'true':True, 'false':False, 'null': None})
 
 # add increasing sequence numbers to the requests of each use case
 # so that we look for dependencies between req1 and req2, where req2 follows req1 in the use case
