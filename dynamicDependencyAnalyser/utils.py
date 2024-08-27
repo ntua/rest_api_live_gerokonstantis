@@ -2,12 +2,16 @@ import json
 
 # checks if an object is nested so as to continue parsing
 def is_nested_obj(obj):
-    if 'name' not in obj and 'value' not in obj:
-        return True
-    for attribute, value in obj.items():
-        if type(value)==dict and attribute!='format':
-            return True
-    return False
+    items = list(obj.items())
+    return not ((items[0][0]=='name' and type(items[0][1])!=dict) 
+                and (items[1][0]=='value' and type(items[1][1])!=dict) 
+                and (len(items)==2 or (len(items)==3 and items[2][0]=='format' and type(items[2][1])==dict)))
+    # if 'name' not in obj and 'value' not in obj:
+    #     return True
+    # for attribute, value in obj.items():
+    #     if type(value)==dict and attribute!='format':
+    #         return True
+    # return False
 
 # searches for an element in a dict that matches a given value regardless of their data types
 def find_value_in_dict(dict, value):
