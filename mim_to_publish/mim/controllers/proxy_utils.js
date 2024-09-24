@@ -27,3 +27,15 @@ exports.export_calls = async (req, res) => {
     return res.status(500).json("Failed to export documents");
   }
 };
+
+exports.delete_logs = async (req, res) => {
+  try {
+    const domain = formatDomain(req.params.domain);
+    await Request.deleteMany({ url: domain });
+    return res
+      .status(200)
+      .json({ message: `The documents for ${domain} were deleted successfully` });
+  } catch (error) {
+    return res.status(500).json({ message: `Failed to delete the documents for ${domain}` });
+  }
+};
