@@ -21,7 +21,7 @@ const makeRequest = async (target, method, originalHeaders, body, files) => {
   try {
     let headers = {};
     for (let key of Object.keys(originalHeaders)) {
-      if (!["host", "content-length", "transfer-encoding", "connection"].includes(key.toLowerCase())) {
+      if (!["host", "content-length", "transfer-encoding", "connection", "if-none-match", "if-modified-since"].includes(key.toLowerCase())) {        
         headers[key] = originalHeaders[key];
       }
     }
