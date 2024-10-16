@@ -2,8 +2,8 @@
 This repo contains the source code for the **_Man in the Middle_** (MIM) software that was developed as a part of a tool for dynamic API dependency analysis. 
 
 ## Description
-MIM is designed to capture and store requests made to an API while undertaking itself to forward them to the API and receive the response. In this way, MIM operates as a mediator between the client and the API. 
-The client sends API requests to MIM, MIM forwards them to the API and receives the response, stores information about the API call and returns the response to the client. This process is illustrated in the sequence diagram shown below.
+MIM is designed to capture and store API requests while also taking responsibility for forwarding them to the API and receive the response. In this way, MIM operates as a mediator between the client and the API. 
+The client sends API requests to MIM, which forwards them to the API, receives the response, stores information about the API call and sends the response back to the client. This process is illustrated in the sequence diagram shown below.
 
 <p align="center"><img src="https://github.com/user-attachments/assets/9c786206-ad8d-4154-8361-6ed280994382" width="600" height="280" /></p>
 
@@ -43,7 +43,7 @@ If the desired tag is "usecase42", it is only needed to configure a call with th
 ```
 PUT http://localhost:3003/proxy/https_api-m_sandbox_paypal_com/usecase42/v2/invoicing/invoices/INV2-J43G-QASS-VQZX-HRL2?send_to_recipient=true&send_to_invoicer=true
 ```
-Notice how the domain is passed into the URL. The symbols `://` have to be replaced with underscore and any following dot is also replaced with underscore.
+Notice how the domain is passed into the URL. The symbols `://` should be replaced with an underscore along with any subsequent dots.
 ### Export API calls
 MIM provides one more useful endpoint for exporting the records associated with a specific API : `proxy_utils/export/:domain`. If there is a need to export all the records associated with the PayPal API (url : `https://api-m.sandbox.paypal.com`), you can just make a GET request as shown below (you can only use a browser to make this GET request):
 ```
