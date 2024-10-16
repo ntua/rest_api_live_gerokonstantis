@@ -23,7 +23,7 @@ The information stored by MIM is in the form shown below :
 <p align="center"><img src="https://github.com/user-attachments/assets/be0ee5ed-e2fd-4776-b18a-cc927242a227" width="400" height="230" /></p>
 
 ## When and How to use MIM
-It is important to note that MIM has to be placed between an API client and an API server accessible to the client. If the API is protected by a firewall and the client is not allowed to use it, MIM will not be able to forward and capture the network traffic. If the purpose is to work with a public and accessible API, the MIM can be set up locally. If the API of interest is a private enterprise API, MIM has to be set up in the appropriate private network.
+It is important to note that MIM has to be placed between an API client and an API server accessible to the client. If the API is protected by a firewall and the client is not allowed to access it, MIM will not be able to forward and capture the network traffic. When working with public and widely accessible APIs, MIM can be installed and configured locally. In contrast, for a private enterprise API, MIM needs to be deployed within the relevant private network. 
 
 ## Set up (locally) and use MIM
 The prerequisite for running MIM is that you already have the [Docker environment](https://docs.docker.com/engine/install/) installed. If so, it is only necessary to move to the **mim** directory and run
