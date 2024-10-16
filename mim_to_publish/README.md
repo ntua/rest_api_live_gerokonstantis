@@ -11,11 +11,11 @@ The information stored by MIM is in the form shown below :
 - **ip** : the client's ip
 - **method** : the HTTP method of the request
 - **url** : the API's url
-- **endpoint** : the API endpoint that accepts the request
+- **endpoint** : the API endpoint that is invoked
 - **headers** : the list of request's headers and their values
 - **body** : the request body
-- **query** : the query params (if available)
-- **params** : the path's segments (including the path parameters)
+- **query** : the query params (if any)
+- **params** : the segments of the URL (including the path parameters)
 - **response** : the response body
 - **tag** : a label associated with the call (for example, the use case number to which this call belongs)
   
