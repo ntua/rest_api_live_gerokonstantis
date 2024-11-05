@@ -37,7 +37,7 @@ const makeRequest = async (target, method, originalHeaders, body, files) => {
       }
 
       // Add the files to the form
-      files.map((file) =>
+      files.forEach((file) =>
         form.append(file.fieldname, fs.createReadStream(file.path), {
           filename: file.originalname,
         })
@@ -99,7 +99,7 @@ exports.mim = async (req, res) => {
     const response = await makeRequest(target, method, headers, body, files);
     const { status: responseStatus, data } = response;
     console.log(`Request ${method} ${target} was made successfully`);
-    if (files) files.map((file) => (body[file.fieldname] = file));
+    if (files) files.forEach((file) => (body[file.fieldname] = file));
     const bodySchema = constructSchema(body);
     console.log(`Ready to save request info for ${method} ${target}`)
     await saveRequest(ip, method, domain, tag, params, headers, bodySchema, query, paramsArr, responseStatus, data);
