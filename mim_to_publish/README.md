@@ -1,16 +1,16 @@
 # Dynamic API analysis : Man In the Middle (MIM)
-This repo contains the source code for the **_Man in the Middle_** (MIM) software that was developed as a part of a tool for dynamic API dependency analysis. 
+This repo contains the source code for the **_Man in the Middle_** (MIM) software that was developed as part of a tool for dynamic API dependency analysis. 
 
 ## Description
 MIM is designed to capture and store API requests while also taking responsibility for forwarding them to the API and receive the response. In this way, MIM operates as a mediator between the client and the API. 
 The client sends API requests to MIM, which forwards them to the API, receives the response, stores information about the API call and sends the response back to the client. This process is illustrated in the sequence diagram shown below.
 
-<p align="center"><img src="https://github.com/user-attachments/assets/9c786206-ad8d-4154-8361-6ed280994382" width="600" height="280" /></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/18d17c45-7489-40a2-9c35-529bf591a1c8" width="600" height="280" /></p>
 
 The information stored by MIM is in the form shown below :
 - **ip** : the client's ip
 - **method** : the HTTP method of the request
-- **url** : the API's url
+- **url** : the url of the target API
 - **endpoint** : the API endpoint that is invoked
 - **headers** : the list of request's headers and their values
 - **body** : the request body
