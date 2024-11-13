@@ -43,7 +43,7 @@ If the desired tag is "usecase42", it is only needed to configure a call with th
 ```
 PUT http://localhost:3003/proxy/https_api-m_sandbox_paypal_com/usecase42/v2/invoicing/invoices/INV2-J43G-QASS-VQZX-HRL2?send_to_recipient=true&send_to_invoicer=true
 ```
-Notice how the domain is passed into the URL. The symbols `://` should be replaced with an underscore along with any subsequent dots.
+Notice how the domain is passed into the URL. The symbols `://` and any subsequent dots should be replaced with an underscore.
 ### Export API calls
 MIM provides one more useful endpoint for exporting the records associated with a specific API : `proxy_utils/export/:domain`. If there is a need to export all the records associated with the PayPal API (url : `https://api-m.sandbox.paypal.com`), you can just make a GET request as shown below (you can only use a browser to make this GET request):
 ```
